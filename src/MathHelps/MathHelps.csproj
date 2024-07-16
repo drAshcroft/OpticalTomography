@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{484C148A-B6D0-4CBA-923A-1C9DD9968E0E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MathHelpLib</RootNamespace>
+    <AssemblyName>MathHelpLib</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\DoRecons\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BitMiracle.LibTiff.NET">
+      <HintPath>..\..\3rdParty\libTIFF.NET\BitMiracle.LibTiff.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitware.mummy.Runtime">
+      <HintPath>..\..\..\..\Program Files\ActiViz.NET 5.8.0 OpenSource Edition\bin\Kitware.mummy.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitware.VTK">
+      <HintPath>..\..\..\..\Program Files\ActiViz.NET 5.8.0 OpenSource Edition\bin\Kitware.VTK.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Iridium">
+      <HintPath>..\..\3rdParty\Math.Net\MathNet.Iridium.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Neodym">
+      <HintPath>..\..\3rdParty\Math.Net\MathNet.Neodym.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph">
+      <HintPath>..\..\3rdParty\ZedGraph\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="3DStuff\3DInterpolation.cs" />
+    <Compile Include="3DStuff\MarchingCubes.cs" />
+    <Compile Include="3DStuff\MathHelps3D.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3DStuff\Point3D.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommonNetwork.cs" />
+    <Compile Include="Convolution\ATMConvolutionKernal.cs" />
+    <Compile Include="Convolution\AverageConvolutionKernal.cs" />
+    <Compile Include="Convolution\ConvolutionFilterImplented.cs" />
+    <Compile Include="Convolution\ConvolutionTypes.cs" />
+    <Compile Include="Convolution\IConvolutionKernal.cs" />
+    <Compile Include="Convolution\MaxFilter.cs" />
+    <Compile Include="Convolution\MedianFilter.cs" />
+    <Compile Include="Convolution\MinFilter.cs" />
+    <Compile Include="Convolution\ValueArrayKernal.cs" />
+    <Compile Include="CurveFitting\MathCurveFits.cs" />
+    <Compile Include="DrawingAndGraphing\MathGraphTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FFT\FFTMathNetLib.cs" />
+    <Compile Include="FFT\IFFTPluginHandler.cs" />
+    <Compile Include="FFT\FFTWLib.cs" />
+    <Compile Include="Filtering.cs" />
+    <Compile Include="ImageHolder.cs" />
+    <Compile Include="ImageProcessing\FloodFill.cs" />
+    <Compile Include="ImageProcessing\ImageLibrary.cs" />
+    <Compile Include="ImageProcessing\MathImageHelps.cs" />
+    <Compile Include="ImageToFakeArray.cs" />
+    <Compile Include="LMA.cs" />
+    <Compile Include="MathHelpsFileLoader.cs" />
+    <Compile Include="PhysicalArrays\IndexedRange.cs" />
+    <Compile Include="PhysicalArrays\MathArrayHelps.cs" />
+    <Compile Include="MathHelps.cs" />
+    <Compile Include="MathHelpsComplex.cs" />
+    <Compile Include="FFT\MathHelpsFFT.cs" />
+    <Compile Include="MathStringHelps.cs" />
+    <Compile Include="PhysicalArrays\PhysicalArray.cs" />
+    <Compile Include="PhysicalArrays\PhysicalArrayTokens.cs" />
+    <Compile Include="PhysicalArrays\PhysicalRange.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Recon\Convolution1D2.cs" />
+    <Compile Include="Recon\DoSliceProjectionSiddonGPU.cs" />
+    <Compile Include="Recon\DoARTSliceProjection.cs" />
+    <Compile Include="Recon\DoSliceProjection.cs" />
+    <Compile Include="Recon\DoSliceProjectionGuassian.cs" />
+    <Compile Include="Recon\DoSliceProjectionSiddon2.cs" />
+    <Compile Include="Recon\ProjectionArrayObject.cs" />
+    <Compile Include="ThreadSafeDict.cs" />
+    <Compile Include="UseableInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UseableInputBox.Designer.cs">
+      <DependentUpon>UseableInputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WOW.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cloo-0.9.1\Clootils\Clootils.VS2010.csproj">
+      <Project>{FD7A92BD-8036-428F-9C7D-9A3630AF7E2F}</Project>
+      <Name>Clootils.VS2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cloo-0.9.1\Cloo\Cloo.VS2010.csproj">
+      <Project>{656E96CE-2587-4CCC-A4DB-06D36267133A}</Project>
+      <Name>Cloo.VS2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FFTW\fftwlib.csproj">
+      <Project>{BEA875B8-E28A-49C5-8E7E-6512DA65F7E1}</Project>
+      <Name>fftwlib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libemgucv-windows-x64-2.3.0.1416-1\Emgu.CV\Emgu.CV.csproj">
+      <Project>{9A1A77FE-F01B-495E-87B7-4B16E4F8C908}</Project>
+      <Name>Emgu.CV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libemgucv-windows-x64-2.3.0.1416-1\Emgu.Util\Emgu.Util.csproj">
+      <Project>{7C2C5325-8235-4A24-9C67-6BD79A4679E2}</Project>
+      <Name>Emgu.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UseableInputBox.resx">
+      <DependentUpon>UseableInputBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

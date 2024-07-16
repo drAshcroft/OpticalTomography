@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{484C148A-B6D0-4CBA-923A-1C9DD9968E0E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MathHelpLib</RootNamespace>
+    <AssemblyName>MathHelpLib</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MathNet.Iridium, Version=2008.8.16.470, Culture=neutral, PublicKeyToken=c061a3ec32cc0c6f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Math.Net\MathNet.Iridium.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Neodym, Version=2008.2.2.364, Culture=neutral, PublicKeyToken=c061a3ec32cc0c6f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Math.Net\MathNet.Neodym.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph, Version=5.1.2.878, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\VariousDLLs\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="3DStuff\CrossDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="3DStuff\CrossDisplay.designer.cs">
+      <DependentUpon>CrossDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3DStuff\PseudoCube.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="3DStuff\PseudoCube.Designer.cs">
+      <DependentUpon>PseudoCube.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3DStuff\ThresholdDefinition.cs" />
+    <Compile Include="DrawingAndGraphing\Graph3DSliceViewerMultiAngleEditor2D.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\Graph3DSliceViewerMultiAngleEditor2D.Designer.cs">
+      <DependentUpon>Graph3DSliceViewerMultiAngleEditor2D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\Graph3DThreshold.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\Graph3DThreshold.Designer.cs">
+      <DependentUpon>Graph3DThreshold.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\Graph3DSliceViewerMultiAngleEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\Graph3DSliceViewerMultiAngleEditor.Designer.cs">
+      <DependentUpon>Graph3DSliceViewerMultiAngleEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\Graph1D.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\Graph1D.Designer.cs">
+      <DependentUpon>Graph1D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\Graph3DSliceViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\Graph3DSliceViewer.Designer.cs">
+      <DependentUpon>Graph3DSliceViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\GraphingWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\GraphingWindow.Designer.cs">
+      <DependentUpon>GraphingWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\ImageEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\ImageEditor.Designer.cs">
+      <DependentUpon>ImageEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\MathGraphTypes.cs" />
+    <Compile Include="DrawingAndGraphing\IGraphControl.cs" />
+    <Compile Include="DrawingAndGraphing\ImageViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FFT\FFTMathNetLib.cs" />
+    <Compile Include="FFT\IFFTPluginHandler.cs" />
+    <Compile Include="FFT\FFTWLib.cs" />
+    <Compile Include="ImageProcessing\AverageConvolutionKernal.cs" />
+    <Compile Include="ImageProcessing\IConvolutionKernal.cs" />
+    <Compile Include="ImageProcessing\MathImageHelps.cs" />
+    <Compile Include="3DStuff\MarchingCubes.cs" />
+    <Compile Include="DrawingAndGraphing\MathGraph.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing\MathGraph.Designer.cs">
+      <DependentUpon>MathGraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageProcessing\MedianFilter.cs" />
+    <Compile Include="ImageProcessing\ValueArrayKernal.cs" />
+    <Compile Include="LMA.cs" />
+    <Compile Include="PhysicalArrays\IndexedRange.cs" />
+    <Compile Include="PhysicalArrays\MathArrayHelps.cs" />
+    <Compile Include="MathHelps.cs" />
+    <Compile Include="3DStuff\MathHelps3D.cs" />
+    <Compile Include="MathHelpsComplex.cs" />
+    <Compile Include="FFT\MathHelpsFFT.cs" />
+    <Compile Include="MathStringHelps.cs" />
+    <Compile Include="PhysicalArrays\PhysicalArray.cs" />
+    <Compile Include="PhysicalArrays\PhysicalArrayTokens.cs" />
+    <Compile Include="3DStuff\Point3D.cs" />
+    <Compile Include="PhysicalArrays\PhysicalRange.cs" />
+    <Compile Include="ProjectionFilters\CombineProjectionObjects.cs" />
+    <Compile Include="ProjectionFilters\Convolution1DFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectionFilters\CreateProjectionObject.cs" />
+    <Compile Include="ProjectionFilters\DoSliceProjection.cs" />
+    <Compile Include="ProjectionFilters\IntepolateSliceProjection.cs" />
+    <Compile Include="ProjectionFilters\MakeMIPMovie.cs" />
+    <Compile Include="ProjectionFilters\MakeMIPProjection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FFTW\fftwlib_2008.csproj">
+      <Project>{BEA875B8-E28A-49C5-8E7E-6512DA65F7E1}</Project>
+      <Name>fftwlib_2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GPUConvolution\GPUConvolution_2008.csproj">
+      <Project>{1DEB75BD-7652-4EFC-85F5-7D30D7C353B7}</Project>
+      <Name>GPUConvolution_2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageViewer\ImageViewer_2008.csproj">
+      <Project>{D3CD7907-21A4-438E-8B9A-0AB9C81C9D40}</Project>
+      <Name>ImageViewer_2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageViewer_3D\ImageViewer3D_2008.csproj">
+      <Project>{CBF6621C-93AD-4DE4-9C74-27F3047387BF}</Project>
+      <Name>ImageViewer3D_2008</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="3DStuff\CrossDisplay.resx">
+      <DependentUpon>CrossDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3DStuff\PseudoCube.resx">
+      <DependentUpon>PseudoCube.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing\Graph3DSliceViewerMultiAngleEditor2D.resx">
+      <DependentUpon>Graph3DSliceViewerMultiAngleEditor2D.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing\Graph3DSliceViewerMultiAngleEditor.resx">
+      <DependentUpon>Graph3DSliceViewerMultiAngleEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing\Graph1D.resx">
+      <DependentUpon>Graph1D.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing\Graph3DSliceViewer.resx">
+      <DependentUpon>Graph3DSliceViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing\Graph3DThreshold.resx">
+      <DependentUpon>Graph3DThreshold.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing\GraphingWindow.resx">
+      <DependentUpon>GraphingWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing\ImageEditor.resx">
+      <DependentUpon>ImageEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing\ImageViewer.resx">
+      <DependentUpon>ImageViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing\MathGraph.resx">
+      <DependentUpon>MathGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

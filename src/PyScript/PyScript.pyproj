@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4394c66a-ece0-4a02-bccd-ac025f56f582}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>PyScript.py</StartupFile>
+    <SearchPath>C:\Development\CellCT\Tomographic_Imaging\DoRecons\bin\Debug\;C:\Development\CellCT\Tomographic_Imaging\DoRecons\bin\Release\;C:\Development\CellCT\Tomographic_Imaging\DoRecons\bin\x64\;C:\Program Files (x86)\IronPython 2.7.1\DLLs\;C:\Program Files (x86)\IronPython 2.7.1\Lib\;C:\Program Files (x86)\IronPython 2.7.1\Lib\site-packages</SearchPath>
+    <WorkingDirectory>C:\Development\CellCT\Tomographic_Imaging - current\DoRecons\bin\Debug</WorkingDirectory>
+    <InterpreterId>fcc291aa-427c-498c-a4d7-4502d6449b8c</InterpreterId>
+    <LaunchProvider>IronPython (.NET) launcher</LaunchProvider>
+    <InterpreterVersion>2.7</InterpreterVersion>
+    <AssemblyName>PyScript</AssemblyName>
+    <Name>PyScript</Name>
+    <RootNamespace>PyScript</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <CommandLineArguments>
+    </CommandLineArguments>
+    <InterpreterPath />
+    <DebugStdLib>False</DebugStdLib>
+    <InterpreterArguments>
+    </InterpreterArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="PyScript.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasicFunctions.py" />
+  </ItemGroup>
+</Project>

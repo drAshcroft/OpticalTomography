@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC126BFD-D743-4FCB-9E1E-D9F68DFC9DB8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImageViewer3D</RootNamespace>
+    <AssemblyName>ImageViewer3DFloat</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\DoRecons\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>..\..\3rdParty\AForge\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging">
+      <HintPath>..\..\3rdParty\AForge\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython">
+      <HintPath>..\..\3rdParty\IronPython\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules">
+      <HintPath>..\..\3rdParty\IronPython\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Iridium, Version=2008.8.16.470, Culture=neutral, PublicKeyToken=c061a3ec32cc0c6f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Math.Net\MathNet.Iridium.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\..\3rdParty\IronPython\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\..\3rdParty\IronPython\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Core">
+      <HintPath>..\..\3rdParty\IronPython\Microsoft.Scripting.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Debugging">
+      <HintPath>..\..\3rdParty\IronPython\Microsoft.Scripting.Debugging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.ExtensionAttribute">
+      <HintPath>..\..\3rdParty\IronPython\Microsoft.Scripting.ExtensionAttribute.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph">
+      <HintPath>..\..\3rdParty\ZedGraph\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="3DItems\Box.cs" />
+    <Compile Include="Convolution\ConvolutionFilterImplented3D.cs" />
+    <Compile Include="Convolution\IConvolutionKernal3D.cs" />
+    <Compile Include="Convolution\ValueArrayKernal3D.cs" />
+    <Compile Include="CrossDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossDisplay.designer.cs">
+      <DependentUpon>CrossDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataHolder.cs" />
+    <Compile Include="Filters\Adjustments\Invert.cs" />
+    <Compile Include="Filters\Adjustments\LUTTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\aEffectForm3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\aEffectForm3D.Designer.cs">
+      <DependentUpon>aEffectForm3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataEnvironment3D.cs" />
+    <Compile Include="EffectMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Filters\Analysis\HistogramTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Analysis\ProfileTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Artifacts\RemoveFBPSquare.cs" />
+    <Compile Include="Filters\Artifacts\RemoveFBPcylinder.cs" />
+    <Compile Include="Filters\Artifacts\RemoveFBPsphere.cs" />
+    <Compile Include="Filters\Edit\CopyActiveImage.cs" />
+    <Compile Include="Filters\Edit\CopyAllImages.cs" />
+    <Compile Include="Filters\Edit\CopyTopTwo.cs" />
+    <Compile Include="Filters\Effects\RankOrder\AverageConvolutionKernal3D.cs" />
+    <Compile Include="Filters\Effects\RankOrder\AverageFilter3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\RankOrder\MedianFilter3D.cs" />
+    <Compile Include="Filters\Effects\RankOrder\MedianOrderFilter3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\Sharpen.cs" />
+    <Compile Include="Filters\Files\CombineMIPTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Files\CreateFlyThroughTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Files\MIPTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Files\Open.cs" />
+    <Compile Include="Filters\Files\Save.cs" />
+    <Compile Include="Filters\Files\SaveVirtualStackTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SaveFileDialogExplain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SaveFileDialogExplain.Designer.cs">
+      <DependentUpon>SaveFileDialogExplain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Filters\IEffect3D.cs" />
+    <Compile Include="ImagingTools3D.cs" />
+    <Compile Include="Forms\OpenFileDialogExplain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\OpenFileDialogExplain.Designer.cs">
+      <DependentUpon>OpenFileDialogExplain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PythonScripting\CellCT\NormalizeVolume.cs" />
+    <Compile Include="PythonScripting\ImageDisplayer3D.cs" />
+    <Compile Include="Filters\EffectHelps3D.cs" />
+    <Compile Include="Filters\aEffectNoForm3D.cs" />
+    <Compile Include="PictureDisplay3DSlice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Selections\ISelection3D.cs" />
+    <Compile Include="Selections\LassoSelection.cs" />
+    <Compile Include="Selections\ProfileSelection3D.cs" />
+    <Compile Include="ToolbarButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\aDrawingTool3D.cs" />
+    <Compile Include="Tools\GrabTool3D.cs" />
+    <Compile Include="ScreenProperties3D.cs" />
+    <Compile Include="Tools\LassoTool.cs" />
+    <Compile Include="Tools\ProfileTool3D.cs" />
+    <Compile Include="Selections\ROISelection3D.cs" />
+    <Compile Include="Tools\ROITool3D.cs" />
+    <Compile Include="ViewerControl3DFloat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewerControl3DFloat.Designer.cs">
+      <DependentUpon>ViewerControl3DFloat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CrossDisplay.resx">
+      <DependentUpon>CrossDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters\aEffectForm3D.resx">
+      <DependentUpon>aEffectForm3D.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OpenFileDialogExplain.resx">
+      <DependentUpon>OpenFileDialogExplain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SaveFileDialogExplain.resx">
+      <DependentUpon>SaveFileDialogExplain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewerControl3DFloat.resx">
+      <DependentUpon>ViewerControl3DFloat.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Tools\ZoomTool3D.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImageViewer\ImageViewer.csproj">
+      <Project>{D3CD7907-21A4-438E-8B9A-0AB9C81C9D40}</Project>
+      <Name>ImageViewer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{3A67F4D4-122A-4BFC-8F69-8209FE778559}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MathHelps\MathHelps.csproj">
+      <Project>{484C148A-B6D0-4CBA-923A-1C9DD9968E0E}</Project>
+      <Name>MathHelps</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

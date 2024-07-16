@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{84C13BAC-6B4E-4E2D-8A6F-DBBE4BA6F4AE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GraphingLibrary</RootNamespace>
+    <AssemblyName>GraphingLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\DoRecons\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Kitware.mummy.Runtime">
+      <HintPath>..\..\..\..\Program Files\ActiViz.NET 5.8.0 OpenSource Edition\bin\Kitware.mummy.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitware.VTK">
+      <HintPath>..\..\..\..\Program Files\ActiViz.NET 5.8.0 OpenSource Edition\bin\Kitware.VTK.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph">
+      <HintPath>..\..\3rdParty\ZedGraph\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="3DStuff\MarchingCubes.cs" />
+    <Compile Include="3DStuff\PseudoCube.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="3DStuff\PseudoCube.Designer.cs">
+      <DependentUpon>PseudoCube.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DragGraph.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DragGraph.Designer.cs">
+      <DependentUpon>DragGraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\3D_View.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\3D_View.Designer.cs">
+      <DependentUpon>3D_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\Graph1D.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\Graph1D.Designer.cs">
+      <DependentUpon>Graph1D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\Graph3DSliceViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\Graph3DSliceViewer.Designer.cs">
+      <DependentUpon>Graph3DSliceViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\Graph3DSliceViewerMultiAngleEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\Graph3DSliceViewerMultiAngleEditor.Designer.cs">
+      <DependentUpon>Graph3DSliceViewerMultiAngleEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\GraphingWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\GraphingWindow.Designer.cs">
+      <DependentUpon>GraphingWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\IGraphControl.cs" />
+    <Compile Include="DrawingAndGraphing2\ImageEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\ImageEditor.Designer.cs">
+      <DependentUpon>ImageEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\ImageViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\MathGraph.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\MathGraph.Designer.cs">
+      <DependentUpon>MathGraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\vtkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DrawingAndGraphing2\vtkForm.Designer.cs">
+      <DependentUpon>vtkForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FakeMoviePlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FakeMoviePlayer.Designer.cs">
+      <DependentUpon>FakeMoviePlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraphForm.designer.cs">
+      <DependentUpon>GraphForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphForm3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraphForm3D.Designer.cs">
+      <DependentUpon>GraphForm3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IntensityGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IntensityGraph.Designer.cs">
+      <DependentUpon>IntensityGraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Light3DView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Light3DView.Designer.cs">
+      <DependentUpon>Light3DView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptingInterface\ScriptingInterface.cs" />
+    <Compile Include="ScriptingInterface\VariableWindowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScriptingInterface\VariableWindowForm.designer.cs">
+      <DependentUpon>VariableWindowForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StackExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StackExplorer.Designer.cs">
+      <DependentUpon>StackExplorer.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImageViewer\ImageViewer.csproj">
+      <Project>{D3CD7907-21A4-438E-8B9A-0AB9C81C9D40}</Project>
+      <Name>ImageViewer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageViewer_3DFloat\ImageViewer3DFloat.csproj">
+      <Project>{FC126BFD-D743-4FCB-9E1E-D9F68DFC9DB8}</Project>
+      <Name>ImageViewer3DFloat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{3A67F4D4-122A-4BFC-8F69-8209FE778559}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MathHelps\MathHelps.csproj">
+      <Project>{484C148A-B6D0-4CBA-923A-1C9DD9968E0E}</Project>
+      <Name>MathHelps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlayWnd\PlayWnd-2008.csproj">
+      <Project>{20FBEEA4-92C2-409E-9448-219CE60C0041}</Project>
+      <Name>PlayWnd-2008</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="3DStuff\PseudoCube.resx">
+      <DependentUpon>PseudoCube.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DragGraph.resx">
+      <DependentUpon>DragGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing2\3D_View.resx">
+      <DependentUpon>3D_View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing2\Graph1D.resx">
+      <DependentUpon>Graph1D.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing2\Graph3DSliceViewer.resx">
+      <DependentUpon>Graph3DSliceViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing2\Graph3DSliceViewerMultiAngleEditor.resx">
+      <DependentUpon>Graph3DSliceViewerMultiAngleEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing2\GraphingWindow.resx">
+      <DependentUpon>GraphingWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing2\ImageEditor.resx">
+      <DependentUpon>ImageEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing2\ImageViewer.resx">
+      <DependentUpon>ImageViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing2\MathGraph.resx">
+      <DependentUpon>MathGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingAndGraphing2\vtkForm.resx">
+      <DependentUpon>vtkForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FakeMoviePlayer.resx">
+      <DependentUpon>FakeMoviePlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraphForm.resx">
+      <DependentUpon>GraphForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraphForm3D.resx">
+      <DependentUpon>GraphForm3D.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IntensityGraph.resx">
+      <DependentUpon>IntensityGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Light3DView.resx">
+      <DependentUpon>Light3DView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptingInterface\VariableWindowForm.resx">
+      <DependentUpon>VariableWindowForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StackExplorer.resx">
+      <DependentUpon>StackExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,691 @@
+ private void marchingCubesToolStripMenuItem_Click0(object sender, EventArgs e)
+        {
+            vtkForm graphics2 = new vtkForm();
+            graphics2.Show();
+
+            graphics2.IsoSurfaceImages(@"C:\Temp\MC4");
+            // graphics.marchingCubes(Points);
+
+            return;
+
+
+            int zoomX = AllContours.ScreenBox.Width;
+            int zoomY = AllContours.ScreenBox.Height;
+
+            double unZoomX = (double)AllContours.Depth / (double)zoomX;
+            double unZoomY = (double)AllContours.Height / (double)zoomY;
+
+            List<SingleSlice> SlicesWithContours = new List<SingleSlice>();
+            for (int Contour = 0; Contour < AllContours.Contours.Count; Contour++)
+            {
+
+                List<int> SliceIndex = new List<int>();
+                for (int i = 0; i < AllContours.Contours[Contour].SingleSlice.Count - 1 && i < AllContours.Width; i++)
+                {
+                    if (AllContours.Contours[Contour].SingleSlice[i].Vertixes.Count > 0)
+                    {
+                        SlicesWithContours.Add(AllContours.Contours[Contour].SingleSlice[i]);
+                        SliceIndex.Add(i);
+                    }
+                }
+            }/*
+
+            double[, ,] DataCube = new double[AllContours.Width, AllContours.Height, SlicesWithContours.Count];
+            //all the slices in the array
+            for (int i = 0; i < SlicesWithContours.Count; i++)
+            {
+
+                Bitmap b = new Bitmap(AllContours.Width, AllContours.Height);
+                Graphics g = Graphics.FromImage(b);
+
+                g.Clear(Color.Black);
+
+                SingleSlice sSingle = SlicesWithContours[i];
+
+                //draw all shapes on this slice
+                for (int j = 0; j < sSingle.Vertixes.Count; j++)
+                {
+                    GraphicsPath gp = new GraphicsPath();
+                    gp.StartFigure();
+                    //draw the shape
+                    for (int k = 100; k < sSingle.Vertixes[j].Length; k++)
+                    {
+                        // Create an open figure
+                        Point point1 = new Point();
+                        point1.X = (int)(sSingle.Vertixes[j][k - 100].X * unZoomX);
+                        point1.Y = (int)(sSingle.Vertixes[j][k - 100].Y * unZoomY);
+
+                        Point point2 = new Point();
+                        point2.X = (int)(sSingle.Vertixes[j][k].X * unZoomX);
+                        point2.Y = (int)(sSingle.Vertixes[j][k].Y * unZoomY);
+
+                        gp.AddLine(point1.X, point1.Y, point2.X, point2.Y);
+                    }
+                    gp.CloseFigure();
+                    g.FillPath(Brushes.White, gp);
+                    gp.Dispose();
+                }
+
+                double[,] imageData = MathImageHelps.ConvertToDoubleArray(b, false);
+                b.Save(@"c:\temp\MC2\mc" + i.ToString() + ".bmp");
+                b.Dispose();
+
+                for (int x = 0; x < imageData.GetLength(0); x++)
+                    for (int y = 0; y < imageData.GetLength(1); y++)
+                        DataCube[x, y, i] = imageData[x, y];
+
+            }*/
+
+            List<SingleSlice> Slices = new List<SingleSlice>();
+            for (int Contour = 0; Contour < AllContours.Contours.Count; Contour++)
+            {
+
+                List<int> SliceIndex = new List<int>();
+                for (int i = 0; i < AllContours.Contours[Contour].SingleSlice.Count - 1 && i < AllContours.Width; i++)
+                {
+                    if (AllContours.Contours[Contour].SingleSlice[i].Vertixes.Count > 0)
+                    {
+                        Slices.Add(AllContours.Contours[Contour].SingleSlice[i]);
+                        SliceIndex.Add(i);
+                    }
+                    else if (Slices.Count > 0 && AllContours.Contours[Contour].SingleSlice[i + 1].Vertixes.Count > 0)
+                    {
+
+                        int size = Slices.Count;
+                        int size2 = Slices[size - 1].Vertixes[0].Length;
+                        /*for (int w = 0; w < Slices[size - 1].Vertixes.Count; w++)
+                        {
+                            size2 = size2 + Slices[size - 1].Vertixes[w].Length;
+                        
+                        }*/
+                        int size3 = AllContours.Contours[Contour].SingleSlice.Count;
+                        int size4 = AllContours.Contours[Contour].SingleSlice[i + 1].Vertixes[0].Length;
+
+                        /*for (int w = 0; w < AllContours.Contours[Contour].SingleSlice[i+1].Vertixes.Count; w++)
+                        {
+                            size4 = size4 + AllContours.Contours[Contour].SingleSlice[i + 1].Vertixes[w].Length;
+
+                        }*/
+
+                        Point[] first = new Point[size2];
+                        Point[] second = new Point[size4];
+
+
+
+                        //for (int j = 0; j < Slices[size - 1].Vertixes.Count; j++)
+                        //{
+                        int m = 0;
+                        for (int k = 0; k < Slices[size - 1].Vertixes[0].Length; k++)
+                        {
+
+                            first[m] = Slices[size - 1].Vertixes[0][k];
+                            m++;
+                        }
+                        //}
+
+                        //for (int j = 0; j < AllContours.Contours[Contour].SingleSlice[i+1].Vertixes.Count; j++)
+                        //{
+                        m = 0;
+                        for (int k = 0; k < AllContours.Contours[Contour].SingleSlice[i + 1].Vertixes[0].Length; k++)
+                        {
+
+                            second[m] = AllContours.Contours[Contour].SingleSlice[i + 1].Vertixes[0][k];
+                            m++;
+                        }
+                        //}
+                        Point[] interpolatedPoints = new Point[first.Length];
+                        int index = 0;
+                        for (int j = 0; j < first.Length; j++)
+                        {
+                            double minDistance = Math.Sqrt((first[j].X - second[0].X) * (first[j].X - second[0].X) +
+                                (first[j].Y - second[0].Y) * (first[j].Y - second[0].Y));
+                            Point closestPoint = second[0];
+
+                            for (int k = 1; k < second.Length; k++)
+                            {
+                                double currentDistance = Math.Sqrt((first[j].X - second[k].X) * (first[j].X - second[k].X) +
+                                    (first[j].Y - second[k].Y) * (first[j].Y - second[k].Y));
+
+                                if (currentDistance < minDistance)
+                                {
+                                    minDistance = currentDistance;
+                                    closestPoint = second[k];
+                                }
+                            }
+                            Point interpolated = new Point();
+                            //interpolated.X =(int) (double) ((closestPoint.X - first[j].X)/2d + first[j].X);
+                            //interpolated.Y =(int)(double) ((closestPoint.Y - first[j].Y) / 2d + first[j].Y);
+                            double V0Y = (((double)(closestPoint.Y - first[j].Y)) - 0.5 * 9.81 * 4) / 2;
+                            double V0X = ((double)(closestPoint.X - first[j].X)) / 2;
+                            interpolated.X = (int)(V0X + (double)first[j].X);
+                            interpolated.Y = (int)(V0Y - 0.5 * 9.81 + (double)first[j].Y);
+
+                            interpolatedPoints[index] = interpolated;
+                            index++;
+                        }
+
+                        Slices.Add(new SingleSlice(i));
+                        Slices[Slices.Count - 1].Vertixes.Add(interpolatedPoints);
+                        // Slices[Slices.Count- 1].Vertixes[0] = interpolatedPoints;
+                        SliceIndex.Add(i);
+
+
+
+                    }
+                }
+            }
+
+
+
+
+
+
+            double[, ,] DataCube = new double[AllContours.Depth, AllContours.Height, Slices.Count];
+            //all the slices in the array
+            for (int i = 0; i < Slices.Count; i++)
+            {
+
+                Bitmap b = new Bitmap(AllContours.Depth, AllContours.Height);
+                Graphics g = Graphics.FromImage(b);
+
+                g.Clear(Color.Black);
+
+                SingleSlice sSingle = Slices[i];
+
+                //draw all shapes on this slice
+                for (int j = 0; j < sSingle.Vertixes.Count; j++)
+                {
+                    GraphicsPath gp = new GraphicsPath();
+                    gp.StartFigure();
+                    //draw the shape
+                    for (int k = 1; k < sSingle.Vertixes[j].Length; k++)
+                    {
+                        // Create an open figure
+                        Point point1 = new Point();
+                        point1.X = (int)(sSingle.Vertixes[j][k - 1].X * unZoomX);
+                        point1.Y = (int)(sSingle.Vertixes[j][k - 1].Y * unZoomY);
+
+                        Point point2 = new Point();
+                        point2.X = (int)(sSingle.Vertixes[j][k].X * unZoomX);
+                        point2.Y = (int)(sSingle.Vertixes[j][k].Y * unZoomY);
+
+                        gp.AddLine(point1.X, point1.Y, point2.X, point2.Y);
+                    }
+                    gp.CloseFigure();
+                    g.FillPath(Brushes.White, gp);
+                    gp.Dispose();
+                }
+
+                double[,] imageData = MathImageHelps.ConvertToDoubleArray(b, false);
+                b.Save(@"c:\temp\MC4\mc" + i.ToString() + ".bmp");
+                b.Dispose();
+
+                for (int x = 0; x < imageData.GetLength(0); x++)
+                    for (int y = 0; y < imageData.GetLength(1); y++)
+                        DataCube[x, y, i] = imageData[x, y];
+
+            }
+
+            vtkForm graphics = new vtkForm();
+            graphics.Show();
+
+            //  graphics.OpenVisualization(DataCube);
+            vtkPoints Points = new vtkPoints();
+            int control = 0;
+            for (int i = 0; i < DataCube.GetLength(0); i++)
+            {
+                for (int j = 0; j < DataCube.GetLength(1); j++)
+                {
+                    for (int k = 0; k < DataCube.GetLength(2); k++)
+                    {
+                        if (DataCube[i, j, k] == 255)
+                        {
+                            control++;
+                            if (control == 100)
+                            {
+                                Points.InsertNextPoint(i, j, k);
+                                control = 0;
+                            }
+                        }
+                    }
+                }
+
+            }
+            //graphics.marchingCubes(Points);
+
+
+            /*
+            double[, ,] DataCube = new double[AllContours.Depth + 1, AllContours.Height + 1, SlicesWithContours.Count];
+                for (int i=0; i < DataCube.GetLength(0); i++)
+                {
+                for (int j=0; j < DataCube.GetLength(1); j++)
+                {
+                for (int k=0; k < DataCube.GetLength(2); k++)
+                {
+                DataCube [i,j,k] = 0;
+
+                }
+                }
+                }
+                int index = 0;
+
+                for (int i = 0; i < SlicesWithContours.Count; i++)
+                    {
+
+                        for (int j = 0; j < SlicesWithContours[i].Vertixes.Count; j++)
+                        {
+                            for (int k = 0; k < SlicesWithContours[i].Vertixes[j].Length; k++)
+                            {
+                                int x = (int)(SlicesWithContours[i].Vertixes[j][k].X * unZoomM + unZoomB);
+                                int y = (int)(SlicesWithContours[i].Vertixes[j][k].Y * unZoomM + unZoomB);
+
+                                DataCube [x,y, i] = 255;
+                                index ++;
+                            }    
+                        
+                        }
+            
+                }
+            */
+
+            /*
+                MarchingCubes mc = new MarchingCubes();
+                mc.CreateSurface(DataCube, 1,(int)( (double) DataCube.GetLength(0)/3d),(int)( (double) DataCube.GetLength(1)/3d),(int)( (double) DataCube.GetLength(2)/3d));
+                //mc.CreateSurface(DataCube, 1, 100, 100, 100);
+
+                System.Diagnostics.Debug.Print(mc.VertexList.Length.ToString());
+                System.Diagnostics.Debug.Print(mc.TriangleIndexs.Length.ToString());
+
+
+                Point3D[] VertexList = mc.VertexList;
+                int[] TriangleIndexs = mc.TriangleIndexs;
+
+               /* TriangleProxy[] tp = new TriangleProxy[mc.TriangleIndexs.Length / 3];
+                for (int i = 0; i < mc.TriangleIndexs.Length; i += 3)
+                {
+                    tp[i / 3] = new TriangleProxy(ref VertexList, ref TriangleIndexs, i);
+                }
+
+                List<TriangleProxy> Triangles = new List<TriangleProxy>();
+                for (int i = 0; i < mc.TriangleIndexs.Length; i += 3)
+                {
+                    Triangles.Add(new TriangleProxy(ref VertexList, ref TriangleIndexs, i));
+                }
+
+                TriangleProxy.FixTriangles(Triangles);
+
+                
+                double[][] Points = new double[VertexList.Length][];
+                for (int i = 0; i < VertexList.Length; i++)
+                {
+                    double[] d = new double[3];
+                    d[0] = mc.VertexList[i].X;
+                    d[1] = mc.VertexList[i].Y;
+                    d[2] = mc.VertexList[i].Z;
+                    Points[i] = d;
+                }
+
+               /* double surfacearea = Class1.SurfaceArea(mc);
+
+
+
+                double Vol = Class1.Volume(mc);
+                double s = Vol;
+                
+
+
+                vtkForm graphics = new vtkForm();
+                graphics.Show();
+
+                //  graphics.OpenVisualization(DataCube);
+                graphics.LoadPolyMesh(Points, mc.TriangleIndexs);
+            */
+
+
+        }
+
+        private void Original(object sender, EventArgs e)
+        {
+            vtkForm graphics2 = new vtkForm();
+            graphics2.Show();
+
+            graphics2.IsoSurfaceImages(@"C:\Temp\MC4");
+            // graphics.marchingCubes(Points);
+
+            return;
+
+
+            int zoomX = AllContours.ScreenBox.Width;
+            int zoomY = AllContours.ScreenBox.Height;
+
+            double unZoomX = (double)AllContours.Depth / (double)zoomX;
+            double unZoomY = (double)AllContours.Height / (double)zoomY;
+
+            List<SingleSlice> SlicesWithContours = new List<SingleSlice>();
+            for (int Contour = 0; Contour < AllContours.Contours.Count; Contour++)
+            {
+
+                List<int> SliceIndex = new List<int>();
+                for (int i = 0; i < AllContours.Contours[Contour].SingleSlice.Count - 1 && i < AllContours.Width; i++)
+                {
+                    if (AllContours.Contours[Contour].SingleSlice[i].Vertixes.Count > 0)
+                    {
+                        SlicesWithContours.Add(AllContours.Contours[Contour].SingleSlice[i]);
+                        SliceIndex.Add(i);
+                    }
+                }
+            }/*
+
+            double[, ,] DataCube = new double[AllContours.Width, AllContours.Height, SlicesWithContours.Count];
+            //all the slices in the array
+            for (int i = 0; i < SlicesWithContours.Count; i++)
+            {
+
+                Bitmap b = new Bitmap(AllContours.Width, AllContours.Height);
+                Graphics g = Graphics.FromImage(b);
+
+                g.Clear(Color.Black);
+
+                SingleSlice sSingle = SlicesWithContours[i];
+
+                //draw all shapes on this slice
+                for (int j = 0; j < sSingle.Vertixes.Count; j++)
+                {
+                    GraphicsPath gp = new GraphicsPath();
+                    gp.StartFigure();
+                    //draw the shape
+                    for (int k = 100; k < sSingle.Vertixes[j].Length; k++)
+                    {
+                        // Create an open figure
+                        Point point1 = new Point();
+                        point1.X = (int)(sSingle.Vertixes[j][k - 100].X * unZoomX);
+                        point1.Y = (int)(sSingle.Vertixes[j][k - 100].Y * unZoomY);
+
+                        Point point2 = new Point();
+                        point2.X = (int)(sSingle.Vertixes[j][k].X * unZoomX);
+                        point2.Y = (int)(sSingle.Vertixes[j][k].Y * unZoomY);
+
+                        gp.AddLine(point1.X, point1.Y, point2.X, point2.Y);
+                    }
+                    gp.CloseFigure();
+                    g.FillPath(Brushes.White, gp);
+                    gp.Dispose();
+                }
+
+                double[,] imageData = MathImageHelps.ConvertToDoubleArray(b, false);
+                b.Save(@"c:\temp\MC2\mc" + i.ToString() + ".bmp");
+                b.Dispose();
+
+                for (int x = 0; x < imageData.GetLength(0); x++)
+                    for (int y = 0; y < imageData.GetLength(1); y++)
+                        DataCube[x, y, i] = imageData[x, y];
+
+            }*/
+
+            List<SingleSlice> Slices = new List<SingleSlice>();
+            for (int Contour = 0; Contour < AllContours.Contours.Count; Contour++)
+            {
+
+                List<int> SliceIndex = new List<int>();
+                for (int i = 0; i < AllContours.Contours[Contour].SingleSlice.Count - 1 && i < AllContours.Width; i++)
+                {
+                    if (AllContours.Contours[Contour].SingleSlice[i].Vertixes.Count > 0)
+                    {
+                        Slices.Add(AllContours.Contours[Contour].SingleSlice[i]);
+                        SliceIndex.Add(i);
+                    }
+                    else if (Slices.Count > 0 && AllContours.Contours[Contour].SingleSlice[i + 1].Vertixes.Count > 0)
+                    {
+
+                        int size = Slices.Count;
+                        int size2 = Slices[size - 1].Vertixes[0].Length;
+                        /*for (int w = 0; w < Slices[size - 1].Vertixes.Count; w++)
+                        {
+                            size2 = size2 + Slices[size - 1].Vertixes[w].Length;
+                        
+                        }*/
+                        int size3 = AllContours.Contours[Contour].SingleSlice.Count;
+                        int size4 = AllContours.Contours[Contour].SingleSlice[i + 1].Vertixes[0].Length;
+
+                        /*for (int w = 0; w < AllContours.Contours[Contour].SingleSlice[i+1].Vertixes.Count; w++)
+                        {
+                            size4 = size4 + AllContours.Contours[Contour].SingleSlice[i + 1].Vertixes[w].Length;
+
+                        }*/
+
+                        Point[] first = new Point[size2];
+                        Point[] second = new Point[size4];
+
+
+
+                        //for (int j = 0; j < Slices[size - 1].Vertixes.Count; j++)
+                        //{
+                        int m = 0;
+                        for (int k = 0; k < Slices[size - 1].Vertixes[0].Length; k++)
+                        {
+
+                            first[m] = Slices[size - 1].Vertixes[0][k];
+                            m++;
+                        }
+                        //}
+
+                        //for (int j = 0; j < AllContours.Contours[Contour].SingleSlice[i+1].Vertixes.Count; j++)
+                        //{
+                        m = 0;
+                        for (int k = 0; k < AllContours.Contours[Contour].SingleSlice[i + 1].Vertixes[0].Length; k++)
+                        {
+
+                            second[m] = AllContours.Contours[Contour].SingleSlice[i + 1].Vertixes[0][k];
+                            m++;
+                        }
+                        //}
+                        Point[] interpolatedPoints = new Point[first.Length];
+                        int index = 0;
+                        for (int j = 0; j < first.Length; j++)
+                        {
+                            double minDistance = Math.Sqrt((first[j].X - second[0].X) * (first[j].X - second[0].X) +
+                                (first[j].Y - second[0].Y) * (first[j].Y - second[0].Y));
+                            Point closestPoint = second[0];
+
+                            for (int k = 1; k < second.Length; k++)
+                            {
+                                double currentDistance = Math.Sqrt((first[j].X - second[k].X) * (first[j].X - second[k].X) +
+                                    (first[j].Y - second[k].Y) * (first[j].Y - second[k].Y));
+
+                                if (currentDistance < minDistance)
+                                {
+                                    minDistance = currentDistance;
+                                    closestPoint = second[k];
+                                }
+                            }
+                            Point interpolated = new Point();
+                            //interpolated.X =(int) (double) ((closestPoint.X - first[j].X)/2d + first[j].X);
+                            //interpolated.Y =(int)(double) ((closestPoint.Y - first[j].Y) / 2d + first[j].Y);
+                            double V0Y = (((double)(closestPoint.Y - first[j].Y)) - 0.5 * 9.81 * 4) / 2;
+                            double V0X = ((double)(closestPoint.X - first[j].X)) / 2;
+                            interpolated.X = (int)(V0X + (double)first[j].X);
+                            interpolated.Y = (int)(V0Y - 0.5 * 9.81 + (double)first[j].Y);
+
+                            interpolatedPoints[index] = interpolated;
+                            index++;
+                        }
+
+                        Slices.Add(new SingleSlice(i));
+                        Slices[Slices.Count - 1].Vertixes.Add(interpolatedPoints);
+                        // Slices[Slices.Count- 1].Vertixes[0] = interpolatedPoints;
+                        SliceIndex.Add(i);
+
+
+
+                    }
+                }
+            }
+
+
+
+
+
+
+            double[, ,] DataCube = new double[AllContours.Depth, AllContours.Height, Slices.Count];
+            //all the slices in the array
+            for (int i = 0; i < Slices.Count; i++)
+            {
+
+                Bitmap b = new Bitmap(AllContours.Depth, AllContours.Height);
+                Graphics g = Graphics.FromImage(b);
+
+                g.Clear(Color.Black);
+
+                SingleSlice sSingle = Slices[i];
+
+                //draw all shapes on this slice
+                for (int j = 0; j < sSingle.Vertixes.Count; j++)
+                {
+                    GraphicsPath gp = new GraphicsPath();
+                    gp.StartFigure();
+                    //draw the shape
+                    for (int k = 1; k < sSingle.Vertixes[j].Length; k++)
+                    {
+                        // Create an open figure
+                        Point point1 = new Point();
+                        point1.X = (int)(sSingle.Vertixes[j][k - 1].X * unZoomX);
+                        point1.Y = (int)(sSingle.Vertixes[j][k - 1].Y * unZoomY);
+
+                        Point point2 = new Point();
+                        point2.X = (int)(sSingle.Vertixes[j][k].X * unZoomX);
+                        point2.Y = (int)(sSingle.Vertixes[j][k].Y * unZoomY);
+
+                        gp.AddLine(point1.X, point1.Y, point2.X, point2.Y);
+                    }
+                    gp.CloseFigure();
+                    g.FillPath(Brushes.White, gp);
+                    gp.Dispose();
+                }
+
+                double[,] imageData = MathImageHelps.ConvertToDoubleArray(b, false);
+                b.Save(@"c:\temp\MC4\mc" + i.ToString() + ".bmp");
+                b.Dispose();
+
+                for (int x = 0; x < imageData.GetLength(0); x++)
+                    for (int y = 0; y < imageData.GetLength(1); y++)
+                        DataCube[x, y, i] = imageData[x, y];
+
+            }
+
+            vtkForm graphics = new vtkForm();
+            graphics.Show();
+
+            //  graphics.OpenVisualization(DataCube);
+            vtkPoints Points = new vtkPoints();
+            int control = 0;
+            for (int i = 0; i < DataCube.GetLength(0); i++)
+            {
+                for (int j = 0; j < DataCube.GetLength(1); j++)
+                {
+                    for (int k = 0; k < DataCube.GetLength(2); k++)
+                    {
+                        if (DataCube[i, j, k] == 255)
+                        {
+                            control++;
+                            if (control == 100)
+                            {
+                                Points.InsertNextPoint(i, j, k);
+                                control = 0;
+                            }
+                        }
+                    }
+                }
+
+            }
+            //graphics.marchingCubes(Points);
+
+
+            /*
+            double[, ,] DataCube = new double[AllContours.Depth + 1, AllContours.Height + 1, SlicesWithContours.Count];
+                for (int i=0; i < DataCube.GetLength(0); i++)
+                {
+                for (int j=0; j < DataCube.GetLength(1); j++)
+                {
+                for (int k=0; k < DataCube.GetLength(2); k++)
+                {
+                DataCube [i,j,k] = 0;
+
+                }
+                }
+                }
+                int index = 0;
+
+                for (int i = 0; i < SlicesWithContours.Count; i++)
+                    {
+
+                        for (int j = 0; j < SlicesWithContours[i].Vertixes.Count; j++)
+                        {
+                            for (int k = 0; k < SlicesWithContours[i].Vertixes[j].Length; k++)
+                            {
+                                int x = (int)(SlicesWithContours[i].Vertixes[j][k].X * unZoomM + unZoomB);
+                                int y = (int)(SlicesWithContours[i].Vertixes[j][k].Y * unZoomM + unZoomB);
+
+                                DataCube [x,y, i] = 255;
+                                index ++;
+                            }    
+                        
+                        }
+            
+                }
+            */
+
+            /*
+                MarchingCubes mc = new MarchingCubes();
+                mc.CreateSurface(DataCube, 1,(int)( (double) DataCube.GetLength(0)/3d),(int)( (double) DataCube.GetLength(1)/3d),(int)( (double) DataCube.GetLength(2)/3d));
+                //mc.CreateSurface(DataCube, 1, 100, 100, 100);
+
+                System.Diagnostics.Debug.Print(mc.VertexList.Length.ToString());
+                System.Diagnostics.Debug.Print(mc.TriangleIndexs.Length.ToString());
+
+
+                Point3D[] VertexList = mc.VertexList;
+                int[] TriangleIndexs = mc.TriangleIndexs;
+
+               /* TriangleProxy[] tp = new TriangleProxy[mc.TriangleIndexs.Length / 3];
+                for (int i = 0; i < mc.TriangleIndexs.Length; i += 3)
+                {
+                    tp[i / 3] = new TriangleProxy(ref VertexList, ref TriangleIndexs, i);
+                }
+
+                List<TriangleProxy> Triangles = new List<TriangleProxy>();
+                for (int i = 0; i < mc.TriangleIndexs.Length; i += 3)
+                {
+                    Triangles.Add(new TriangleProxy(ref VertexList, ref TriangleIndexs, i));
+                }
+
+                TriangleProxy.FixTriangles(Triangles);
+
+                
+                double[][] Points = new double[VertexList.Length][];
+                for (int i = 0; i < VertexList.Length; i++)
+                {
+                    double[] d = new double[3];
+                    d[0] = mc.VertexList[i].X;
+                    d[1] = mc.VertexList[i].Y;
+                    d[2] = mc.VertexList[i].Z;
+                    Points[i] = d;
+                }
+
+               /* double surfacearea = Class1.SurfaceArea(mc);
+
+
+
+                double Vol = Class1.Volume(mc);
+                double s = Vol;
+                
+
+
+                vtkForm graphics = new vtkForm();
+                graphics.Show();
+
+                //  graphics.OpenVisualization(DataCube);
+                graphics.LoadPolyMesh(Points, mc.TriangleIndexs);
+            */
+
+
+        }

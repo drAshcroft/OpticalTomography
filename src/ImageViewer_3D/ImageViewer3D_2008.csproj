@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CBF6621C-93AD-4DE4-9C74-27F3047387BF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImageViewer3D</RootNamespace>
+    <AssemblyName>ImageViewer3D</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge, Version=2.1.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AForge\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=2.1.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AForge\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython, Version=2.6.10920.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules, Version=2.6.10920.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Iridium, Version=2008.8.16.470, Culture=neutral, PublicKeyToken=c061a3ec32cc0c6f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Math.Net\MathNet.Iridium.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\Microsoft.Scripting.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Debugging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\Microsoft.Scripting.Debugging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.ExtensionAttribute, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\Microsoft.Scripting.ExtensionAttribute.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph, Version=5.1.2.878, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\VariousDLLs\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="3DItems\Box.cs" />
+    <Compile Include="BasicMatrix.cs" />
+    <Compile Include="CrossDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossDisplay.designer.cs">
+      <DependentUpon>CrossDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataHolder.cs" />
+    <Compile Include="Filters\Adjustments\Invert.cs" />
+    <Compile Include="Filters\Adjustments\LUTTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\aEffectForm3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\aEffectForm3D.Designer.cs">
+      <DependentUpon>aEffectForm3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="hArrowSlider.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="hArrowSlider.Designer.cs">
+      <DependentUpon>hArrowSlider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IronPythonConversions.cs" />
+    <Compile Include="PictureDisplay.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataEnvironment3D.cs" />
+    <Compile Include="EffectMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SaveFileDialogExplain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SaveFileDialogExplain.Designer.cs">
+      <DependentUpon>SaveFileDialogExplain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Filters\IEffect3D.cs" />
+    <Compile Include="ImagingTools3D.cs" />
+    <Compile Include="Forms\OpenFileDialogExplain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\OpenFileDialogExplain.Designer.cs">
+      <DependentUpon>OpenFileDialogExplain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3DItems\Meshes\MarchingCubes.cs" />
+    <Compile Include="3DItems\Point3D.cs" />
+    <Compile Include="3DItems\Meshes\ThresholdDefinition.cs" />
+    <Compile Include="PythonScripting\ImageDisplayer3D.cs" />
+    <Compile Include="PythonScripting\MacroHelper3D.cs" />
+    <Compile Include="Filters\EffectHelps3D.cs" />
+    <Compile Include="Filters\Effects\Sharpen.cs" />
+    <Compile Include="Filters\Artifacts\RemoveFBPcylinder.cs" />
+    <Compile Include="Filters\aEffectNoForm3D.cs" />
+    <Compile Include="PythonScripting\MacroRecorder3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PictureDisplay3DSlice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Selections\ISelection3D.cs" />
+    <Compile Include="Selections\ProfileSelection3D.cs" />
+    <Compile Include="ToolbarButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\aDrawingTool3D.cs" />
+    <Compile Include="Tools\GrabTool3D.cs" />
+    <Compile Include="ScreenProperties3D.cs" />
+    <Compile Include="Tools\ProfileTool3D.cs" />
+    <Compile Include="Selections\ROISelection3D.cs" />
+    <Compile Include="Tools\ROITool3D.cs" />
+    <Compile Include="vArrowSlider.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vArrowSlider.Designer.cs">
+      <DependentUpon>vArrowSlider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewerControl3D.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewerControl3D.Designer.cs">
+      <DependentUpon>ViewerControl3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CrossDisplay.resx">
+      <DependentUpon>CrossDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters\aEffectForm3D.resx">
+      <DependentUpon>aEffectForm3D.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OpenFileDialogExplain.resx">
+      <DependentUpon>OpenFileDialogExplain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hArrowSlider.resx">
+      <DependentUpon>hArrowSlider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PythonScripting\MacroRecorder3D.resx">
+      <DependentUpon>MacroRecorder3D.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SaveFileDialogExplain.resx">
+      <DependentUpon>SaveFileDialogExplain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vArrowSlider.resx">
+      <DependentUpon>vArrowSlider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewerControl3D.resx">
+      <DependentUpon>ViewerControl3D.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Tools\ZoomTool3D.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AviFile\AviFile2008.csproj">
+      <Project>{ABB32A29-AF50-47FA-B243-5FD75A5ABA54}</Project>
+      <Name>AviFile2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileDlgExtenders\FileDlgExtenders_2008.csproj">
+      <Project>{9B4DA48C-6D11-46C9-A63D-D369E9C5FE42}</Project>
+      <Name>FileDlgExtenders_2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageViewer\ImageViewer_2008.csproj">
+      <Project>{D3CD7907-21A4-438E-8B9A-0AB9C81C9D40}</Project>
+      <Name>ImageViewer_2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logger\Logger_2008.csproj">
+      <Project>{3A67F4D4-122A-4BFC-8F69-8209FE778559}</Project>
+      <Name>Logger_2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextEditor\IronPythonEditor_2008.csproj">
+      <Project>{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}</Project>
+      <Name>IronPythonEditor_2008</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Filters\Analysis\" />
+    <Folder Include="Filters\Edit\" />
+    <Folder Include="Filters\Files\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

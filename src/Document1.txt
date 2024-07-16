@@ -1,0 +1,62 @@
+def ProcessImage(BitmapImage):
+	
+	#Rotate Image
+	Filter =Filters.Adjustments.RotateImageTool()
+	FilterToken = Filter.CreateToken(-17)
+	BitmapImage=Filter.RunEffect(BitmapImage, FilterToken)
+		
+	#Clip Image to New Image
+	Filter =PythonScripting.Programming_Tools.ClipImageToNewEffect()
+	FilterToken = Filter.CreateToken(Rectangle(191,180,218,224))
+	BitmapImage=Filter.RunEffect(BitmapImage, FilterToken)
+	
+	#Clone Image to PassData
+	Filter =PythonScripting.Programming_Tools.CloneImageToPassDataEffect()
+	BitmapImage=Filter.RunEffect(BitmapImage,None)
+	#Data out of type :System.Drawing.Bitmap
+	OrigData = Filter.PassData
+	
+	#WaterShed And Threshold
+	Filter =Filters.Blobs.WaterShedAndThresholdTool()
+	FilterToken = Filter.CreateToken(104)
+	BitmapImage=Filter.RunEffect(BitmapImage, FilterToken)
+	#Data out of type :System.Int32
+	PassData = Filter.PassData
+	
+	#Get Biggest Blob
+	Filter =Filters.Blobs.GetBiggestBlob()
+	#Accepts data of type: System.Int32
+	Filter.PassData=PassData
+	BitmapImage=Filter.RunEffect(BitmapImage,None)
+	#Data out of type :ImageViewer.Filters.Blobs.BlobDescription
+	PassData = Filter.PassData
+	
+	#Convert Blob to Rectangle
+	Filter =Filters.Blobs.ConvertBlobToRectangle()
+	#Accepts data of type: ImageViewer.Filters.Blobs.BlobDescription
+	Filter.PassData=PassData
+	BitmapImage=Filter.RunEffect(BitmapImage,None)
+	#Data out of type :System.Drawing.Rectangle
+	PassData = Filter.PassData
+	
+	#Expand Rectangle
+	Filter =PythonScripting.Programming_Tools.ExpandRectangleTool()
+	FilterToken = Filter.CreateToken(Size(170,170))
+	#Accepts data of type: System.Drawing.Rectangle
+	Filter.PassData=PassData
+	BitmapImage=Filter.RunEffect(BitmapImage, FilterToken)
+	#Data out of type :System.Drawing.Rectangle
+	PassData = Filter.PassData
+	
+	#PassData to Active Image
+	Filter =PythonScripting.Programming_Tools.PassDataToImageEffect()
+	#Accepts data of type: System.Drawing.Bitmap
+	Filter.PassData= OrigData
+	BitmapImage=Filter.RunEffect(BitmapImage,None)
+	
+	#Clip Image to New Image
+	Filter =PythonScripting.Programming_Tools.ClipImageToNewEffect()
+	FilterToken = Filter.CreateToken(PassData)
+	BitmapImage=Filter.RunEffect(BitmapImage, FilterToken)
+	
+	return BitmapImage

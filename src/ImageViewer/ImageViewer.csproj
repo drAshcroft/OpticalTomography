@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D3CD7907-21A4-438E-8B9A-0AB9C81C9D40}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImageViewer</RootNamespace>
+    <AssemblyName>ImageViewer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\DoRecons\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>..\..\3rdParty\AForge\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging">
+      <HintPath>..\..\3rdParty\AForge\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython">
+      <HintPath>..\..\3rdParty\IronPython\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules">
+      <HintPath>..\..\3rdParty\IronPython\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\..\3rdParty\IronPython\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\..\3rdParty\IronPython\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Core">
+      <HintPath>..\..\3rdParty\IronPython\Microsoft.Scripting.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Debugging">
+      <HintPath>..\..\3rdParty\IronPython\Microsoft.Scripting.Debugging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.ExtensionAttribute">
+      <HintPath>..\..\3rdParty\IronPython\Microsoft.Scripting.ExtensionAttribute.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph">
+      <HintPath>..\..\3rdParty\ZedGraph\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasicMatrix.cs" />
+    <Compile Include="CustomDialogs\Enums.cs" />
+    <Compile Include="CustomDialogs\Extensions.cs" />
+    <Compile Include="CustomDialogs\FileDialogControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomDialogs\FileDialogControlBase.designer.cs">
+      <DependentUpon>FileDialogControlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomDialogs\HelperTypes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomDialogs\structs.cs" />
+    <Compile Include="CustomDialogs\Win32.cs" />
+    <Compile Include="DataEnvironment.cs" />
+    <Compile Include="EffectMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Filters\Adjustments\GrayScaleFromChannel.cs" />
+    <Compile Include="Filters\Adjustments\DownSample.cs" />
+    <Compile Include="Filters\Circles\HoughCircleFinder.cs" />
+    <Compile Include="Filters\Effects\Flattening\FlattenEdges1DErrorCorrected.cs" />
+    <Compile Include="Filters\Effects\Thresholding\IterativeThresholdCornerFill.cs" />
+    <Compile Include="Filters\Files\AVI\CreateAVIFileFromFrames2.cs" />
+    <Compile Include="Filters\Files\FixIVG.cs" />
+    <Compile Include="PythonScripting\Blobs\CenterOfGravity.cs" />
+    <Compile Include="PythonScripting\Blobs\CenterOfGravityIntensity.cs" />
+    <Compile Include="PythonScripting\Blobs\GetBiggestCenterBlob.cs" />
+    <Compile Include="Filters\Effects\Flattening\FlattenEdges1D.cs" />
+    <Compile Include="Filters\Effects\Flattening\FlattenEdges1DIterative.cs" />
+    <Compile Include="Filters\Effects\Flattening\FlattenEdges1DOtsu.cs" />
+    <Compile Include="Filters\Effects\Flattening\FlattenEdges1DSIS.cs" />
+    <Compile Include="Filters\Effects\RankOrder\AlphaTrimmedMeanFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\RankOrder\Convolution1DFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\RankOrder\MedianOrderFilter1DX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\RankOrder\MedianOrderFilter1DY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Files\AVI\CreateAVIFileFromFrames.cs" />
+    <Compile Include="Filters\ReplaceDictionary.cs" />
+    <Compile Include="Filters\IEffectToken.cs" />
+    <Compile Include="InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PythonScripting\Arrays\AddArrayPointTool.cs" />
+    <Compile Include="PythonScripting\Arrays\ReadTextArrayFromFileTool.cs" />
+    <Compile Include="PythonScripting\Arrays\SaveWholeArrayTool.cs" />
+    <Compile Include="PythonScripting\Arrays\ReadWholeArrayTool.cs" />
+    <Compile Include="PythonScripting\Arrays\CreateGlobalArrayTool.cs" />
+    <Compile Include="PythonScripting\AverageImage\AddAveragePointTool.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\Convolution1D2.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\TemplateReconstruction2.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\DoSliceProjectionSiddon2.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\MakeMIPMovie3.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\DoSliceProjectionGuassian.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\DoSliceProjectionSiddon.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\CopyAndChopStack.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\CreateProjectionObject.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\DoARTSliceProjection.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\DoSliceProjection.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\DoSliceProjection2.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\FocusValuePointTool.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\IntepolateSliceProjection.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\MakeMIPProjection.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\ProjectionArrayObject.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\ReconQualityCheckTool.cs" />
+    <Compile Include="PythonScripting\ProjectionFilters\TemplateReconstruction.cs" />
+    <Compile Include="PythonScripting\Sizing\PadImage.cs" />
+    <Compile Include="PythonScripting\Statistics\AverageIntensityPointTool.cs" />
+    <Compile Include="PythonScripting\AverageImage\StandardDeviationPointTool.cs" />
+    <Compile Include="PythonScripting\AverageImage\CreateGlobalAverageTool.cs" />
+    <Compile Include="PythonScripting\AverageImage\ReadWholeAverageTool.cs" />
+    <Compile Include="PythonScripting\Cells\CenterCellsTool2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PythonScripting\Cells\CenterCellsTool2Form.Designer.cs">
+      <DependentUpon>CenterCellsTool2Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PythonScripting\Cells\StationaryPixelsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PythonScripting\Cells\StationaryPixelsForm.Designer.cs">
+      <DependentUpon>StationaryPixelsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PythonScripting\Graphing\GraphArrayTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PythonScripting\ImageFile.cs" />
+    <Compile Include="PythonScripting\Statistics\BlackWhiteRatioTool.cs" />
+    <Compile Include="PythonScripting\Statistics\FastBlackWhiteRatioTool.cs" />
+    <Compile Include="PythonScripting\Statistics\FocusValuePointTool.cs" />
+    <Compile Include="PythonScripting\Threads\JoinThreads.cs" />
+    <Compile Include="SaveFileDialogExplain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SaveFileDialogExplain.Designer.cs">
+      <DependentUpon>SaveFileDialogExplain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Filters\Adjustments\ContrastTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Adjustments\NormalizeIntensity.cs" />
+    <Compile Include="Filters\Analysis\ProfileTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Analysis\HistogramTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PythonScripting\Blobs\ConvertBlobToRectangle.cs" />
+    <Compile Include="Filters\aEffectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\aEffectForm.Designer.cs">
+      <DependentUpon>aEffectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Filters\Effects\Flattening\AverageImages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\Flattening\DivideImage.cs" />
+    <Compile Include="Filters\Effects\Flattening\FlattenEdges.cs" />
+    <Compile Include="Filters\Effects\Masks\OtsuMask.cs" />
+    <Compile Include="Filters\Effects\Masks\SISMask.cs" />
+    <Compile Include="Filters\Effects\RankOrder\MaxOrderFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\RankOrder\MinOrderFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\Masks\IterativeMask.cs" />
+    <Compile Include="Filters\Effects\Masks\simpleMaskTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\Thresholding\Otsu_Threshold.cs" />
+    <Compile Include="Filters\Effects\Thresholding\SIS_Threshold.cs" />
+    <Compile Include="Filters\Effects\Thresholding\IterativeThreshold.cs" />
+    <Compile Include="Filters\Files\AVI\AddBitmap.cs" />
+    <Compile Include="Filters\Files\AVI\CloseAVIFile.cs" />
+    <Compile Include="Filters\Files\AVI\CreateAVIFile.cs" />
+    <Compile Include="PythonScripting\Blobs\BlobDescription.cs" />
+    <Compile Include="PythonScripting\Blobs\WaterShed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\IEffect.cs" />
+    <Compile Include="HistoryMonitor.cs" />
+    <Compile Include="ImagingTools.cs" />
+    <Compile Include="OpenFileDialogExplain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OpenFileDialogExplain.Designer.cs">
+      <DependentUpon>OpenFileDialogExplain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PythonScripting\ImageDisplayer.cs" />
+    <Compile Include="PythonScripting\MacroHelper.cs" />
+    <Compile Include="PythonScripting\Sizing\ClipImage.cs" />
+    <Compile Include="PythonScripting\Blobs\ShowBlobs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PythonScripting\Blobs\GetBiggestBlob.cs" />
+    <Compile Include="PythonScripting\Blobs\WaterShedOnly.cs">
+    </Compile>
+    <Compile Include="IronPythonConversions.cs" />
+    <Compile Include="Filters\Effects\Blurs\GaussianBlurTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Edit\DeleteSelection.cs" />
+    <Compile Include="Filters\Edit\DeSelectAll.cs" />
+    <Compile Include="Filters\Edit\SelectAll.cs" />
+    <Compile Include="Filters\Edit\Paste.cs" />
+    <Compile Include="Filters\Edit\Cut.cs" />
+    <Compile Include="Filters\EffectHelps.cs" />
+    <Compile Include="Filters\Effects\Artistic\OilPainting.cs" />
+    <Compile Include="Filters\Effects\Artistic\Jitter.cs" />
+    <Compile Include="Filters\Edit\Copy.cs" />
+    <Compile Include="Filters\Effects\Morphology\BottomHatTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\Morphology\ClosingTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\Morphology\OpeningTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\Morphology\TopHatTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\Morphology\DilultionTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\Morphology\ErosionTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\EdgeDetection\SobelEdgeDetection.cs" />
+    <Compile Include="Filters\Effects\EdgeDetection\HomogenityEdgeDetection.cs" />
+    <Compile Include="Filters\Effects\EdgeDetection\DifferenceEdgeDetection.cs" />
+    <Compile Include="Filters\Effects\Morphology\StructuringElement.cs" />
+    <Compile Include="Filters\Effects\RankOrder\ConvolutionFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\RankOrder\AverageFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\RankOrder\MedianOrderFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\Sharpen.cs" />
+    <Compile Include="Filters\Effects\Dithering\OrderedDithering.cs" />
+    <Compile Include="Filters\Effects\Dithering\FloydSteinberg.cs" />
+    <Compile Include="Filters\Effects\Thresholding\simpleThresholdTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Effects\Artistic\Sepia.cs" />
+    <Compile Include="Filters\Adjustments\Invert.cs" />
+    <Compile Include="Filters\Adjustments\GrayScale.cs" />
+    <Compile Include="Filters\Files\NewImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters\Files\Open.cs" />
+    <Compile Include="Filters\Files\Save.cs" />
+    <Compile Include="Filters\aEffectNoForm.cs" />
+    <Compile Include="Filters\MenuStructure.cs" />
+    <Compile Include="PythonScripting\MacroRecorder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PictureDisplay.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PythonScripting\Programming Tools\CloneImageToPassData.cs" />
+    <Compile Include="PythonScripting\Programming Tools\SetRectangle.cs" />
+    <Compile Include="PythonScripting\Programming Tools\PassDataToCloneImage.cs" />
+    <Compile Include="PythonScripting\Programming Tools\ExpandRectangle.cs" />
+    <Compile Include="Selections\CircleAndLineSelection.cs" />
+    <Compile Include="Selections\ISelection.cs" />
+    <Compile Include="Selections\CircleSelection.cs" />
+    <Compile Include="Selections\ProfileSelection.cs" />
+    <Compile Include="ToolbarButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\aDrawingTool.cs" />
+    <Compile Include="Tools\CircleTool.cs" />
+    <Compile Include="Tools\CircleLineTool.cs" />
+    <Compile Include="Tools\CircleAndLineTool.cs" />
+    <Compile Include="Tools\CenterROITool.cs" />
+    <Compile Include="Tools\GrabTool.cs" />
+    <Compile Include="ScreenProperties.cs" />
+    <Compile Include="Tools\ProfileTool.cs" />
+    <Compile Include="Selections\ROISelection.cs" />
+    <Compile Include="Tools\ROITool.cs" />
+    <Compile Include="ViewerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewerControl.Designer.cs">
+      <DependentUpon>ViewerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CustomDialogs\FileDialogControlBase.resx">
+      <DependentUpon>FileDialogControlBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters\aEffectForm.resx">
+      <DependentUpon>aEffectForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenFileDialogExplain.resx">
+      <DependentUpon>OpenFileDialogExplain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PythonScripting\Cells\CenterCellsTool2Form.resx">
+      <DependentUpon>CenterCellsTool2Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PythonScripting\Cells\StationaryPixelsForm.resx">
+      <DependentUpon>StationaryPixelsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PythonScripting\MacroRecorder.resx">
+      <DependentUpon>MacroRecorder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveFileDialogExplain.resx">
+      <DependentUpon>SaveFileDialogExplain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewerControl.resx">
+      <DependentUpon>ViewerControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Tools\ZoomTool.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cloo-0.9.1\Cloo\Cloo.VS2010.csproj">
+      <Project>{656E96CE-2587-4CCC-A4DB-06D36267133A}</Project>
+      <Name>Cloo.VS2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libemgucv-windows-x64-2.3.0.1416-1\Emgu.CV.UI\Emgu.CV.UI.csproj">
+      <Project>{90E78BBF-C7FE-4D8E-ADE1-75448E866FDB}</Project>
+      <Name>Emgu.CV.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libemgucv-windows-x64-2.3.0.1416-1\Emgu.CV\Emgu.CV.csproj">
+      <Project>{9A1A77FE-F01B-495E-87B7-4B16E4F8C908}</Project>
+      <Name>Emgu.CV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libemgucv-windows-x64-2.3.0.1416-1\Emgu.Util\Emgu.Util.csproj">
+      <Project>{7C2C5325-8235-4A24-9C67-6BD79A4679E2}</Project>
+      <Name>Emgu.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{3A67F4D4-122A-4BFC-8F69-8209FE778559}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MathHelps\MathHelps.csproj">
+      <Project>{484C148A-B6D0-4CBA-923A-1C9DD9968E0E}</Project>
+      <Name>MathHelps</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PythonScripting\Conversions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ffmpeg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

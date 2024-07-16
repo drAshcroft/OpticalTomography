@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0355D73B-1B83-4CED-9C3A-B943813661C2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tomographic_Imaging_2</RootNamespace>
+    <AssemblyName>Tomographic_Imaging_2</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IronPython, Version=2.6.10920.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules, Version=2.6.10920.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\Microsoft.Scripting.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Debugging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\Microsoft.Scripting.Debugging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.ExtensionAttribute, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronPython\Microsoft.Scripting.ExtensionAttribute.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.5.0.15095, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\VariousDLLs\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="ZedGraph, Version=5.1.2.878, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\VariousDLLs\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="3DGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3DGraph.Designer.cs">
+      <DependentUpon>3DGraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedSelectBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdvancedSelectBox.Designer.cs">
+      <DependentUpon>AdvancedSelectBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EasyGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EasyGUI.Designer.cs">
+      <DependentUpon>EasyGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterTest.Designer.cs">
+      <DependentUpon>FilterTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ImageSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageManipulation\ImageSelector.Designer.cs">
+      <DependentUpon>ImageSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ImageViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageManipulation\ImageViewer.Designer.cs">
+      <DependentUpon>ImageViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\VideoPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageManipulation\VideoPlayer.Designer.cs">
+      <DependentUpon>VideoPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IntensityGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IntensityGraph.Designer.cs">
+      <DependentUpon>IntensityGraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoggerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoggerForm.designer.cs">
+      <DependentUpon>LoggerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectionTools\aProjectionSlice.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProjectionTools\ConvolutionTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProjectionTools\Filtering.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProjectionTools\OpenVisionGate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProjectionTools\ProjectionObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProjectionTools\ProjectionSliceFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProjectionTools\ProjectionSliceMemory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProjectionTools\ProjectionToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScriptCombined.cs" />
+    <Compile Include="ScriptTestsBackground.cs" />
+    <Compile Include="ScriptTestsCenterCells.cs" />
+    <Compile Include="ScriptTestsRecon.cs" />
+    <Compile Include="TextEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextEditorForm.Designer.cs">
+      <DependentUpon>TextEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TomographicMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TomographicMainForm.Designer.cs">
+      <DependentUpon>TomographicMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraphForm.Designer.cs">
+      <DependentUpon>GraphForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="3DGraph.resx">
+      <DependentUpon>3DGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdvancedSelectBox.resx">
+      <DependentUpon>AdvancedSelectBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EasyGUI.resx">
+      <DependentUpon>EasyGUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterTest.resx">
+      <DependentUpon>FilterTest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageManipulation\ImageSelector.resx">
+      <DependentUpon>ImageSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageManipulation\ImageViewer.resx">
+      <DependentUpon>ImageViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageManipulation\VideoPlayer.resx">
+      <DependentUpon>VideoPlayer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IntensityGraph.resx">
+      <DependentUpon>IntensityGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoggerForm.resx">
+      <DependentUpon>LoggerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextEditorForm.resx">
+      <DependentUpon>TextEditorForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TomographicMainForm.resx">
+      <DependentUpon>TomographicMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraphForm.resx">
+      <DependentUpon>GraphForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationControls.resx">
+      <DependentUpon>SimulationControls.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UseableInputBox.resx">
+      <DependentUpon>UseableInputBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VariableWindow\VariableWindowForm.resx">
+      <DependentUpon>VariableWindowForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ScriptingInterface.cs" />
+    <Compile Include="SimulationControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationControls.Designer.cs">
+      <DependentUpon>SimulationControls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UseableInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UseableInputBox.Designer.cs">
+      <DependentUpon>UseableInputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VariableWindow\VariableWindowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VariableWindow\VariableWindowForm.Designer.cs">
+      <DependentUpon>VariableWindowForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WOW.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GPUConvolution\GPUConvolution_2008.csproj">
+      <Project>{1DEB75BD-7652-4EFC-85F5-7D30D7C353B7}</Project>
+      <Name>GPUConvolution_2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageViewer\ImageViewer_2008.csproj">
+      <Project>{D3CD7907-21A4-438E-8B9A-0AB9C81C9D40}</Project>
+      <Name>ImageViewer_2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logger\Logger_2008.csproj">
+      <Project>{3A67F4D4-122A-4BFC-8F69-8209FE778559}</Project>
+      <Name>Logger_2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MathHelps\MathHelps_2008.csproj">
+      <Project>{484C148A-B6D0-4CBA-923A-1C9DD9968E0E}</Project>
+      <Name>MathHelps_2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextEditor\IronPythonEditor_2008.csproj">
+      <Project>{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}</Project>
+      <Name>IronPythonEditor_2008</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
