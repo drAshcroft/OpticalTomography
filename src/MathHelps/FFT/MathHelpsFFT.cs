@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
-using fftwlib;
+ 
 using System.Reflection;
 using System.IO;
 using System.Windows.Forms;
