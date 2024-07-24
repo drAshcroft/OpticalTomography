@@ -27,7 +27,7 @@ namespace MathHelpLib
             catch //(Exception ex)
             {
                 //otherwise use the slower and less functional math.net library
-                CurrentFFTLib = new FFTMathNetLib();
+              //  CurrentFFTLib = new FFTMathNetLib();
             }
 
         }

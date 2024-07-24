@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
+using MathNet.Numerics.LinearAlgebra;
 
 namespace MathHelpLib.ImageProcessing
 {
@@ -107,14 +108,14 @@ namespace MathHelpLib.ImageProcessing
             MatrixX[2, 0] = MatrixX[0, 2];
             MatrixX[2, 1] = MatrixX[1, 2];
 
-            MathNet.Numerics.LinearAlgebra.Matrix m = MathNet.Numerics.LinearAlgebra.Matrix.Create(MatrixX);
-            MathNet.Numerics.LinearAlgebra.Matrix t = MathNet.Numerics.LinearAlgebra.Matrix.Create(MatrixX);
-            MathNet.Numerics.LinearAlgebra.Matrix Ys = MathNet.Numerics.LinearAlgebra.Matrix.Create(MatrixY);
+            var m =  Matrix<double>.Build.DenseOfArray(MatrixX);
+            var t = Matrix<double>.Build.DenseOfArray(MatrixX);
+            var Ys = Matrix<double>.Build.DenseOfArray(MatrixY);
             t.Transpose();
             Ys.Transpose();
 
-            MathNet.Numerics.LinearAlgebra.Matrix tempM = t * m;
-            MathNet.Numerics.LinearAlgebra.Matrix invertM = tempM.Inverse();
+            var  tempM = t * m;
+           var invertM = tempM.Inverse();
 
             tempM = (invertM * t) * Ys;
 
@@ -360,14 +361,14 @@ namespace MathHelpLib.ImageProcessing
             MatrixX[2, 0] = MatrixX[0, 2];
             MatrixX[2, 1] = MatrixX[1, 2];
 
-            MathNet.Numerics.LinearAlgebra.Matrix m = MathNet.Numerics.LinearAlgebra.Matrix.Create(MatrixX);
-            MathNet.Numerics.LinearAlgebra.Matrix t = MathNet.Numerics.LinearAlgebra.Matrix.Create(MatrixX);
-            MathNet.Numerics.LinearAlgebra.Matrix Ys = MathNet.Numerics.LinearAlgebra.Matrix.Create(MatrixY);
+            var m = Matrix<double>.Build.DenseOfArray(MatrixX);
+            var t = Matrix<double>.Build.DenseOfArray(MatrixX);
+            var Ys = Matrix<double>.Build.DenseOfArray(MatrixY);
             t.Transpose();
             Ys.Transpose();
 
-            MathNet.Numerics.LinearAlgebra.Matrix tempM = t * m;
-            MathNet.Numerics.LinearAlgebra.Matrix invertM = tempM.Inverse();
+            var tempM = t * m;
+           var invertM = tempM.Inverse();
 
             tempM = (invertM * t) * Ys;
 
@@ -482,14 +483,16 @@ namespace MathHelpLib.ImageProcessing
             MatrixX[2, 0] = MatrixX[0, 2];
             MatrixX[2, 1] = MatrixX[1, 2];
 
-            MathNet.Numerics.LinearAlgebra.Matrix m = MathNet.Numerics.LinearAlgebra.Matrix.Create(MatrixX);
-            MathNet.Numerics.LinearAlgebra.Matrix t = MathNet.Numerics.LinearAlgebra.Matrix.Create(MatrixX);
-            MathNet.Numerics.LinearAlgebra.Matrix Ys = MathNet.Numerics.LinearAlgebra.Matrix.Create(MatrixY);
+         
+
+             var  m = Matrix<double>.Build.DenseOfArray(MatrixX);
+             var  t = Matrix<double>.Build.DenseOfArray(MatrixX);
+            var  Ys = Matrix<double>.Build.DenseOfArray(MatrixY);
             t.Transpose();
             Ys.Transpose();
 
-            MathNet.Numerics.LinearAlgebra.Matrix tempM = t * m;
-            MathNet.Numerics.LinearAlgebra.Matrix invertM = tempM.Inverse();
+             var tempM = t * m;
+           var invertM = (MathNet.Numerics.LinearAlgebra.Double.DenseMatrix)tempM.Inverse();
 
             tempM = (invertM * t) * Ys;
 
