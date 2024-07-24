@@ -420,22 +420,6 @@
     <Compile Include="Tools\ZoomTool.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cloo-0.9.1\Cloo\Cloo.VS2010.csproj">
-      <Project>{656E96CE-2587-4CCC-A4DB-06D36267133A}</Project>
-      <Name>Cloo.VS2010</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\libemgucv-windows-x64-2.3.0.1416-1\Emgu.CV.UI\Emgu.CV.UI.csproj">
-      <Project>{90E78BBF-C7FE-4D8E-ADE1-75448E866FDB}</Project>
-      <Name>Emgu.CV.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\libemgucv-windows-x64-2.3.0.1416-1\Emgu.CV\Emgu.CV.csproj">
-      <Project>{9A1A77FE-F01B-495E-87B7-4B16E4F8C908}</Project>
-      <Name>Emgu.CV</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\libemgucv-windows-x64-2.3.0.1416-1\Emgu.Util\Emgu.Util.csproj">
-      <Project>{7C2C5325-8235-4A24-9C67-6BD79A4679E2}</Project>
-      <Name>Emgu.Util</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Logger\Logger.csproj">
       <Project>{3A67F4D4-122A-4BFC-8F69-8209FE778559}</Project>
       <Name>Logger</Name>
