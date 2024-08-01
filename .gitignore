@@ -397,9 +397,9 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 .svn
-/src/Cloo-0.9.1
 /src/libemgucv-windows-x64-2.3.0.1416-1
 /src/ImageViewer/*.exe
 /src/MATLAB/denoisingTests/BM3D
 /src/Tomographic_Imaging_2/DataFolders
  
+/src/Cloo-0.9.1/Documentation

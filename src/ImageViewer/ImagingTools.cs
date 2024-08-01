@@ -1565,41 +1565,41 @@ namespace ImageViewer
 
         private static void CreateAVIVideoEMGU(string AVIFilename, string[] Frames)
         {
-            Bitmap bitmap = new Bitmap(Frames[1]);
+            //Bitmap bitmap = new Bitmap(Frames[1]);
 
-            int nWidth = (int)(16 * (Math.Floor((double)bitmap.Width / 16d) + 1));
+            //int nWidth = (int)(16 * (Math.Floor((double)bitmap.Width / 16d) + 1));
 
-            VideoWriter VW = new VideoWriter(AVIFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 15, nWidth, bitmap.Height, true);
-
-
-            int count = 0;
-            for (int n = 1; n < Frames.Length; n++)
-            {
-                if (Frames[n].Trim().Length > 0)
-                {
-                    try
-                    {
-                        bitmap = new Bitmap(Frames[n]);
-                        Bitmap temp = new Bitmap(nWidth, bitmap.Height, PixelFormat.Format32bppRgb);
-                        Graphics g = Graphics.FromImage(temp);
-
-                        g.DrawImage(bitmap, Point.Empty);
-
-                        //bitmap =  Frames[n].ToBitmap();
-                        var frame = new Emgu.CV.Image<Bgr, byte>(temp);
+            //VideoWriter VW = new VideoWriter(AVIFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 15, nWidth, bitmap.Height, true);
 
 
+            //int count = 0;
+            //for (int n = 1; n < Frames.Length; n++)
+            //{
+            //    if (Frames[n].Trim().Length > 0)
+            //    {
+            //        try
+            //        {
+            //            bitmap = new Bitmap(Frames[n]);
+            //            Bitmap temp = new Bitmap(nWidth, bitmap.Height, PixelFormat.Format32bppRgb);
+            //            Graphics g = Graphics.FromImage(temp);
 
-                        VW.WriteFrame<Bgr, byte>(frame);
-                        count++;
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Diagnostics.Debug.Print(ex.Message);
-                    }
-                }
-            }
-            VW.Dispose();
+            //            g.DrawImage(bitmap, Point.Empty);
+
+            //            //bitmap =  Frames[n].ToBitmap();
+            //            var frame = new Emgu.CV.Image<Bgr, byte>(temp);
+
+
+
+            //            VW.WriteFrame<Bgr, byte>(frame);
+            //            count++;
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            System.Diagnostics.Debug.Print(ex.Message);
+            //        }
+            //    }
+            //}
+            //VW.Dispose();
         }
 
         private static void CreateAVIVideoEMGUInvoke(string AVIFilename, string[] Frames)
@@ -1616,74 +1616,74 @@ namespace ImageViewer
 
             // VW = new VideoWriter(AVIFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 15, bitmap.Width  , bitmap.Height,true );
 
-            System.Drawing.Size size = new System.Drawing.Size(bitmap.Width / 2, bitmap.Height);
-            // unsafe
-            {
-                //   fixed (int* psize = size)
-                {
-                    IntPtr _ptr = CvInvoke.cvCreateVideoWriter(AVIFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 15, size, 1);
+            //System.Drawing.Size size = new System.Drawing.Size(bitmap.Width / 2, bitmap.Height);
+            //// unsafe
+            //{
+            //    //   fixed (int* psize = size)
+            //    {
+            //        IntPtr _ptr = CvInvoke.cvCreateVideoWriter(AVIFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 15, size, 1);
 
-                    int count = 0;
-                    for (int n = 1; n < Frames.Length; n++)
-                    {
-                        if (Frames[n].Trim().Length > 0)
-                        {
-                            try
-                            {
-                                FileInfo file = new FileInfo(Frames[n]);
-                                IntPtr ptr = CvInvoke.cvLoadImage(file.FullName, Emgu.CV.CvEnum.LOAD_IMAGE_TYPE.CV_LOAD_IMAGE_ANYCOLOR | Emgu.CV.CvEnum.LOAD_IMAGE_TYPE.CV_LOAD_IMAGE_ANYDEPTH);
-                                if (ptr == IntPtr.Zero)
-                                    throw new NullReferenceException(String.Format("Unable to load image from file \"{0}\".", file.FullName));
+            //        int count = 0;
+            //        for (int n = 1; n < Frames.Length; n++)
+            //        {
+            //            if (Frames[n].Trim().Length > 0)
+            //            {
+            //                try
+            //                {
+            //                    FileInfo file = new FileInfo(Frames[n]);
+            //                    IntPtr ptr = CvInvoke.cvLoadImage(file.FullName, Emgu.CV.CvEnum.LOAD_IMAGE_TYPE.CV_LOAD_IMAGE_ANYCOLOR | Emgu.CV.CvEnum.LOAD_IMAGE_TYPE.CV_LOAD_IMAGE_ANYDEPTH);
+            //                    if (ptr == IntPtr.Zero)
+            //                        throw new NullReferenceException(String.Format("Unable to load image from file \"{0}\".", file.FullName));
 
-                                CvInvoke.cvWriteFrame(_ptr, ptr);
-                                //VW.WriteFrame<Bgr, byte>(frame);
-                                count++;
-                            }
-                            catch (Exception ex)
-                            {
-                                System.Diagnostics.Debug.Print(ex.Message);
-                            }
-                        }
-                    }
-                    CvInvoke.cvReleaseVideoWriter(ref _ptr);
-                }
-            }
-            System.Diagnostics.Debug.Print(size.ToString());
+            //                    CvInvoke.cvWriteFrame(_ptr, ptr);
+            //                    //VW.WriteFrame<Bgr, byte>(frame);
+            //                    count++;
+            //                }
+            //                catch (Exception ex)
+            //                {
+            //                    System.Diagnostics.Debug.Print(ex.Message);
+            //                }
+            //            }
+            //        }
+            //        CvInvoke.cvReleaseVideoWriter(ref _ptr);
+            //    }
+            //}
+            //System.Diagnostics.Debug.Print(size.ToString());
             // VW.Dispose();
         }
         private static void CreateAVIVideoEMGU(string AVIFilename, ImageLibrary Frames)
         {
 
-            ImageHolder bmp = Frames[0];
+            //ImageHolder bmp = Frames[0];
 
-            int nWidth = (int)(16 * (Math.Floor((double)bmp.Width / 16d) + 1));
+            //int nWidth = (int)(16 * (Math.Floor((double)bmp.Width / 16d) + 1));
 
-            VideoWriter VW = null;
+            //VideoWriter VW = null;
 
-            VW = new VideoWriter(AVIFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 15, bmp.Height, bmp.Width, true);
+            //VW = new VideoWriter(AVIFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 15, bmp.Height, bmp.Width, true);
 
-            Bitmap bitmap;
-            int count = 0;
-            for (int n = 1; n < Frames.Count; n++)
-            {
-                if (Frames[n] != null)
-                {
-                    bitmap = Frames[n].ToBitmap();
-                    Bitmap temp = new Bitmap(nWidth, bitmap.Height, PixelFormat.Format32bppRgb);
-                    Graphics g = Graphics.FromImage(temp);
+            //Bitmap bitmap;
+            //int count = 0;
+            //for (int n = 1; n < Frames.Count; n++)
+            //{
+            //    if (Frames[n] != null)
+            //    {
+            //        bitmap = Frames[n].ToBitmap();
+            //        Bitmap temp = new Bitmap(nWidth, bitmap.Height, PixelFormat.Format32bppRgb);
+            //        Graphics g = Graphics.FromImage(temp);
 
-                    g.DrawImage(bitmap, Point.Empty);
+            //        g.DrawImage(bitmap, Point.Empty);
 
-                    var frame = new Emgu.CV.Image<Bgr, byte>(temp);
+            //        var frame = new Emgu.CV.Image<Bgr, byte>(temp);
 
 
-                    VW.WriteFrame<Bgr, byte>(frame);
-                    bitmap.Dispose();
-                    count++;
-                }
-            }
+            //        VW.WriteFrame<Bgr, byte>(frame);
+            //        bitmap.Dispose();
+            //        count++;
+            //    }
+            //}
 
-            VW.Dispose();
+            //VW.Dispose();
         }
 
         /// <summary>
@@ -1695,73 +1695,73 @@ namespace ImageViewer
         private static void CreateAVIVideoEMGU(string AVIFilename, ImageLibrary Frames, int SkipFrames)
         {
 
-            ImageHolder bmp = Frames[0];
+            //ImageHolder bmp = Frames[0];
 
-            int nWidth = (int)(16 * (Math.Floor((double)bmp.Width / 16d) + 1));
+            //int nWidth = (int)(16 * (Math.Floor((double)bmp.Width / 16d) + 1));
 
-            VideoWriter VW = null;
+            //VideoWriter VW = null;
 
-            VW = new VideoWriter(AVIFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 15, bmp.Height, bmp.Width, true);
+            //VW = new VideoWriter(AVIFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 15, bmp.Height, bmp.Width, true);
 
-            Bitmap bitmap;
-            int count = 0;
-            for (int n = 1; n < Frames.Count; n += SkipFrames)
-            {
-                if (Frames[n] != null)
-                {
-                    bitmap = Frames[n].ToBitmap(0);
-                    Bitmap temp = new Bitmap(nWidth, bitmap.Height, PixelFormat.Format32bppRgb);
-                    Graphics g = Graphics.FromImage(temp);
+            //Bitmap bitmap;
+            //int count = 0;
+            //for (int n = 1; n < Frames.Count; n += SkipFrames)
+            //{
+            //    if (Frames[n] != null)
+            //    {
+            //        bitmap = Frames[n].ToBitmap(0);
+            //        Bitmap temp = new Bitmap(nWidth, bitmap.Height, PixelFormat.Format32bppRgb);
+            //        Graphics g = Graphics.FromImage(temp);
 
-                    g.DrawImage(bitmap, Point.Empty);
+            //        g.DrawImage(bitmap, Point.Empty);
 
-                    var frame = new Emgu.CV.Image<Bgr, byte>(temp);
+            //        var frame = new Emgu.CV.Image<Bgr, byte>(temp);
 
 
-                    VW.WriteFrame<Bgr, byte>(frame);
-                    bitmap.Dispose();
-                    count++;
-                }
-            }
+            //        VW.WriteFrame<Bgr, byte>(frame);
+            //        bitmap.Dispose();
+            //        count++;
+            //    }
+            //}
 
-            VW.Dispose();
+            //VW.Dispose();
         }
 
         private static void CreateAVIVideoEMGU(string AVIFilename, Bitmap[] Frames)
         {
 
-            Bitmap bmp = Frames[0];
+            //Bitmap bmp = Frames[0];
 
-            int nWidth = (int)(16 * (Math.Floor((double)bmp.Width / 16d) + 1));
+            //int nWidth = (int)(16 * (Math.Floor((double)bmp.Width / 16d) + 1));
 
-            VideoWriter VW = new VideoWriter(AVIFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 15, bmp.Height, bmp.Width, true);
+            //VideoWriter VW = new VideoWriter(AVIFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 15, bmp.Height, bmp.Width, true);
 
-            Bitmap bitmap;
-            int count = 0;
-            for (int n = 1; n < Frames.Length; n++)
-            {
-                if (Frames[n] != null)
-                {
-                    bitmap = Frames[n];
+            //Bitmap bitmap;
+            //int count = 0;
+            //for (int n = 1; n < Frames.Length; n++)
+            //{
+            //    if (Frames[n] != null)
+            //    {
+            //        bitmap = Frames[n];
 
-                    Bitmap temp = new Bitmap(nWidth, bitmap.Height, PixelFormat.Format32bppRgb);
-                    Graphics g = Graphics.FromImage(temp);
+            //        Bitmap temp = new Bitmap(nWidth, bitmap.Height, PixelFormat.Format32bppRgb);
+            //        Graphics g = Graphics.FromImage(temp);
 
-                    g.DrawImage(bitmap, Point.Empty);
+            //        g.DrawImage(bitmap, Point.Empty);
 
-                    var frame = new Emgu.CV.Image<Bgr, byte>(temp);
+            //        var frame = new Emgu.CV.Image<Bgr, byte>(temp);
 
-                    if (bmp.Width != frame.Width || bmp.Height != frame.Height)
-                        System.Diagnostics.Debug.Print("");
+            //        if (bmp.Width != frame.Width || bmp.Height != frame.Height)
+            //            System.Diagnostics.Debug.Print("");
 
 
-                    VW.WriteFrame<Bgr, byte>(frame);
-                    bitmap.Dispose();
-                    count++;
-                }
-            }
+            //        VW.WriteFrame<Bgr, byte>(frame);
+            //        bitmap.Dispose();
+            //        count++;
+            //    }
+            //}
 
-            VW.Dispose();
+            //VW.Dispose();
         }
 
 
