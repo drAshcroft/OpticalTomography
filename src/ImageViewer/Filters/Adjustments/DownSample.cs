@@ -68,20 +68,20 @@ namespace ImageViewer.Filters.Adjustments
         {
             Emgu.CV.Image<Gray, Single> source = new Emgu.CV.Image<Gray, float>(SourceImage.ImageData);
             //return new ImageHolder(source.Resize(Scale, Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR).Rotate(-90,new Gray(0)));
-            return new ImageHolder(source.Resize(Scale,  Emgu.CV.CvEnum.Inter.Linear));
+            return new ImageHolder(source.Resize(Scale, Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR));
         }
 
         public static ImageHolder UpSampleImage(ImageHolder SourceImage, double Scale)
         {
             Emgu.CV.Image<Gray, Single> source = new Emgu.CV.Image<Gray, float>(SourceImage.ImageData);
             
-            return new ImageHolder(source.Resize(Scale, Emgu.CV.CvEnum.Inter.Linear));
+            return new ImageHolder(source.Resize(Scale , Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR));
         }
 
         public static Bitmap  UpSampleImage(Bitmap SourceImage, double Scale)
         {
             Emgu.CV.Image<Gray, Single> source = new Emgu.CV.Image<Gray, float>(SourceImage);
-            source.Resize(Scale, Emgu.CV.CvEnum.Inter.Linear);
+            source.Resize(Scale, Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR);
             return source.ToBitmap();
         }
 

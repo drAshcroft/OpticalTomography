@@ -86,61 +86,6 @@
             Kinds of real-to-real transforms
             </summary>
         </member>
-        <member name="F:fftwlib.fftw_kind.R2HC">
-            <summary>
-            R2HC
-            </summary>
-        </member>
-        <member name="F:fftwlib.fftw_kind.HC2R">
-            <summary>
-            R2HC
-            </summary>
-        </member>
-        <member name="F:fftwlib.fftw_kind.DHT">
-            <summary>
-            R2HC
-            </summary>
-        </member>
-        <member name="F:fftwlib.fftw_kind.REDFT00">
-            <summary>
-            R2HC
-            </summary>
-        </member>
-        <member name="F:fftwlib.fftw_kind.REDFT01">
-            <summary>
-            R2HC
-            </summary>
-        </member>
-        <member name="F:fftwlib.fftw_kind.REDFT10">
-            <summary>
-            R2HC
-            </summary>
-        </member>
-        <member name="F:fftwlib.fftw_kind.REDFT11">
-            <summary>
-            R2HC
-            </summary>
-        </member>
-        <member name="F:fftwlib.fftw_kind.RODFT00">
-            <summary>
-            R2HC
-            </summary>
-        </member>
-        <member name="F:fftwlib.fftw_kind.RODFT01">
-            <summary>
-            R2HC
-            </summary>
-        </member>
-        <member name="F:fftwlib.fftw_kind.RODFT10">
-            <summary>
-            R2HC
-            </summary>
-        </member>
-        <member name="F:fftwlib.fftw_kind.RODFT11">
-            <summary>
-            R2HC
-            </summary>
-        </member>
         <member name="T:fftwlib.fftwf">
             <summary>
             Contains the Basic Interface FFTW functions for single-precision (float) operations

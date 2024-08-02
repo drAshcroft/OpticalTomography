@@ -43,8 +43,8 @@ namespace IronPythonEditor.Console
                         MessageBox.Show(IPDict.ToString());
                         break;
                     case "IronPython.Runtime.List":
-                        PythonList IPList = new PythonList();
-                        IPList = (PythonList)inobject;
+                        List IPList = new List();
+                        IPList = (List)inobject;
                         MessageBox.Show(IPList.ToString());
                         break;
                     case "System.String":

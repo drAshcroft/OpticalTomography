@@ -39,7 +39,7 @@ namespace MathHelpLib
         private double[] weights;
 
         //Hessian
-        private MathNet.Numerics.LinearAlgebra.Double.DenseMatrix alpha;
+        private MathNet.Numerics.LinearAlgebra.Matrix alpha;
 
         //gradient
         private double[] beta;
@@ -72,7 +72,7 @@ namespace MathHelpLib
         /// <param name="argMaxIter">maximum number of iterations</param>
         public LMA(LMAFunction function, double[] parameters,
             double[][] dataPoints, double[] weights,
-            MathNet.Numerics.LinearAlgebra.Double.DenseMatrix alpha,
+            MathNet.Numerics.LinearAlgebra.Matrix alpha,
             double argDeltaChi2, int argMaxIter)
         {
             if (dataPoints[0].Length != dataPoints[1].Length)
@@ -191,10 +191,9 @@ namespace MathHelpLib
                 //one could also use 
                 //double[] da = DoubleMatrix.solve(alpha, beta);
 
-                MathNet.Numerics.LinearAlgebra.Double.DenseMatrix m = (MathNet.Numerics.LinearAlgebra.Double.DenseMatrix)alpha.Inverse();
+                MathNet.Numerics.LinearAlgebra.Matrix m = alpha.Inverse();
                 //set alpha with inverted matrix
-                
-               // alpha.SetMatrix(0, alpha.RowCount - 1, 0, alpha.ColumnCount - 1, m);
+                alpha.SetMatrix(0, alpha.RowCount - 1, 0, alpha.ColumnCount - 1, m);
             }
             catch (Exception e)
             {

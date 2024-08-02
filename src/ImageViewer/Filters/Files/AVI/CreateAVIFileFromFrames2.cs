@@ -31,10 +31,10 @@ namespace ImageViewer.Filters.Files.AVI
         public static string OpenFilename = "";
         public static void StartAVIStreams(Bitmap FirstImage)
         {
-            //if (OpenFilename != "")
-            //{
-            //    VW = new VideoWriter(OpenFilename, CV_FOURCC('M', 'J', 'P', 'G'), 33, FirstImage.Height, FirstImage.Width, true);
-            //}
+            if (OpenFilename != "")
+            {
+                VW = new VideoWriter(OpenFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 33, FirstImage.Height, FirstImage.Width, true);
+            }
         }
 
         private string[] ParamToList(object oParam)
@@ -52,9 +52,9 @@ namespace ImageViewer.Filters.Files.AVI
                 else
                     bitmaps = ((List<string>)oParam).ToArray();
             }
-            else if (oParam.GetType() == typeof(IronPython.Runtime.PythonList))
+            else if (oParam.GetType() == typeof(IronPython.Runtime.List))
             {
-                IronPython.Runtime.PythonList pythonList = (IronPython.Runtime.PythonList)oParam;
+                IronPython.Runtime.List pythonList = (IronPython.Runtime.List)oParam;
                 bitmaps = new string[pythonList.Count];
                 for (int i = 0; i < pythonList.Count; i++)
                     bitmaps[i] = (string)pythonList[i];

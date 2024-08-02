@@ -264,7 +264,6 @@ __kernel void FBProjection(  __global float  * cube,
         public static float[,] ConvolveImage(float[,] ImageData)
         {
             float[,] imageDataOut = new float[ImageData.GetLength(0), ImageData.GetLength(1)];
-          
             unsafe
             {
 
@@ -297,7 +296,7 @@ __kernel void FBProjection(  __global float  * cube,
                             // 1) Wait for the events in the list to finish,
                             eventList.Wait();
 
-                           // commands.ReadFromBuffer(ImageOutB, (IntPtr)pImageOut, true, 0, ImageData.LongLength,SysIntX3, eventList);
+                            commands.ReadFromBuffer(ImageOutB, (IntPtr)pImageOut, true, 0, ImageData.LongLength, eventList);
                             a.Dispose();
                         }
                     }
@@ -397,7 +396,7 @@ __kernel void FBProjection(  __global float  * cube,
                             }
                         }
                     }
-                 //   commands.ReadFromBuffer(ComputeDataVolume, (IntPtr)pCube, true, 0, volume.LongLength, null);
+                    commands.ReadFromBuffer(ComputeDataVolume, (IntPtr)pCube, true, 0, volume.LongLength, null);
                 }
             }
         }
@@ -612,7 +611,7 @@ __kernel void FBProjection(  __global float  * cube,
                             }
                         }
                     }
-                  //  commands.ReadFromBuffer(ComputeDataVolume, (IntPtr)pCube, true, 0, volume.LongLength, null);
+                    commands.ReadFromBuffer(ComputeDataVolume, (IntPtr)pCube, true, 0, volume.LongLength, null);
                 }
             }
         }
@@ -703,7 +702,7 @@ __kernel void FBProjection(  __global float  * cube,
                             }
                         }
                     }
-                  //  commands.ReadFromBuffer(ComputeDataVolume, (IntPtr)pCube, true, 0, volume.LongLength, null);
+                    commands.ReadFromBuffer(ComputeDataVolume, (IntPtr)pCube, true, 0, volume.LongLength, null);
                 }
             }
         }

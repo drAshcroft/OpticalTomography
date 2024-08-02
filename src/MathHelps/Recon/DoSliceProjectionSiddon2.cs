@@ -11,7 +11,7 @@ using MathHelpLib;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-
+using Cloo;
 
 
 namespace MathHelpLib.Recon

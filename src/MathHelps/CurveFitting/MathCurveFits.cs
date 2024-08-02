@@ -1,6 +1,4 @@
-﻿using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.LinearAlgebra.Double;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -95,7 +93,7 @@ namespace MathHelpLib.CurveFitting
             dataPoints = new double[][] { xValues, yValues };
 
 
-            LMA algorithm = new LMA(f, a, dataPoints, null, new MathNet.Numerics.LinearAlgebra.Double.DenseMatrix(4, 4), 1d - 20, 100);
+            LMA algorithm = new LMA(f, a, dataPoints, null, new MathNet.Numerics.LinearAlgebra.Matrix(4, 4), 1d - 20, 100);
 
             algorithm.Fit();
 
@@ -176,7 +174,7 @@ namespace MathHelpLib.CurveFitting
             dataPoints = new double[][] { xValues, yValues };
 
 
-            LMA algorithm = new LMA(f, a, dataPoints, null, new DenseMatrix(4, 4), 1d - 20, 100);
+            LMA algorithm = new LMA(f, a, dataPoints, null, new MathNet.Numerics.LinearAlgebra.Matrix(4, 4), 1d - 20, 100);
 
             algorithm.Fit();
 
@@ -242,7 +240,7 @@ namespace MathHelpLib.CurveFitting
 
             dataPoints = new double[][] { xValues, yValues };
 
-            LMA algorithm = new LMA(f, a, dataPoints, null, new MathNet.Numerics.LinearAlgebra.Double.DenseMatrix(3, 3), 1d - 20, 100);
+            LMA algorithm = new LMA(f, a, dataPoints, null, new MathNet.Numerics.LinearAlgebra.Matrix(3, 3), 1d - 20, 100);
 
             algorithm.Fit();
 
@@ -295,7 +293,7 @@ namespace MathHelpLib.CurveFitting
             dataPoints = new double[][] { xValues, yValues };
 
 
-            LMA algorithm = new LMA(f, a, dataPoints, null, new DenseMatrix(4, 4), 1d - 20, 100);
+            LMA algorithm = new LMA(f, a, dataPoints, null, new MathNet.Numerics.LinearAlgebra.Matrix(4, 4), 1d - 20, 100);
 
             algorithm.Fit();
 
@@ -340,7 +338,7 @@ namespace MathHelpLib.CurveFitting
             dataPoints = new double[][] { xValues, yValues };
 
 
-            LMA algorithm = new LMA(f, a, dataPoints, null, new DenseMatrix(3, 3), 1d - 20, 100);
+            LMA algorithm = new LMA(f, a, dataPoints, null, new MathNet.Numerics.LinearAlgebra.Matrix(3, 3), 1d - 20, 100);
 
             algorithm.Fit();
 
@@ -368,10 +366,10 @@ namespace MathHelpLib.CurveFitting
             }
 
 
-           var  mX = Matrix<double>.Build.DenseOfArray(X);
-            var  mY = Matrix<double>.Build.DenseOfArray(Y);
+            MathNet.Numerics.LinearAlgebra.Matrix mX = new MathNet.Numerics.LinearAlgebra.Matrix(X);
+            MathNet.Numerics.LinearAlgebra.Matrix mY = new MathNet.Numerics.LinearAlgebra.Matrix(Y);
             mY.Transpose();
-            var a = mX.Solve(mY);
+            MathNet.Numerics.LinearAlgebra.Matrix a = mX.Solve(mY);
             //System.Diagnostics.Debug.Print(a.ToString());
             coeff = new double[PolyOrder + 1];
             for (int i = 0; i <= PolyOrder; i++)

@@ -82,50 +82,17 @@ namespace fftwlib
 	/// </summary>
 	public enum fftw_kind : uint 
 	{
-        /// <summary>
-        /// R2HC
-        /// </summary>
-        R2HC = 0,
-        /// <summary>
-        /// R2HC
-        /// </summary>
-        HC2R = 1,
-        /// <summary>
-        /// R2HC
-        /// </summary>
-        DHT = 2,
-        /// <summary>
-        /// R2HC
-        /// </summary>
-        REDFT00 = 3,
-        /// <summary>
-        /// R2HC
-        /// </summary>
-        REDFT01 = 4,
-        /// <summary>
-        /// R2HC
-        /// </summary>
-        REDFT10 = 5,
-        /// <summary>
-        /// R2HC
-        /// </summary>
-        REDFT11 = 6,
-        /// <summary>
-        /// R2HC
-        /// </summary>
-        RODFT00 = 7,
-        /// <summary>
-        /// R2HC
-        /// </summary>
-        RODFT01 = 8,
-        /// <summary>
-        /// R2HC
-        /// </summary>
-        RODFT10 = 9,
-        /// <summary>
-        /// R2HC
-        /// </summary>
-        RODFT11 = 10
+		R2HC=0, 
+		HC2R=1, 
+		DHT=2,
+		REDFT00=3, 
+		REDFT01=4,
+		REDFT10=5,
+		REDFT11=6,
+		RODFT00=7,
+		RODFT01=8, 
+		RODFT10=9, 
+		RODFT11=10
 	}
 	#endregion
 

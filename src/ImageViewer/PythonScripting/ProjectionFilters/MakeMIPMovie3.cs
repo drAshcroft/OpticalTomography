@@ -385,339 +385,336 @@ __kernel void simpleFBP( __global  double * volume,
 
         public unsafe static Bitmap[] DoMIPProjection(string MovieFilename, string tempFolder, float [, ,] DensityGrid, double AngleStepSize)
         {
-            return null;
-            //lock (CriticalSectionLock)
-            //{
-            //    if (tempFolder != "")
-            //    {
-            //        if (Directory.Exists(tempFolder + "\\MIP\\") == false)
-            //            Directory.CreateDirectory(tempFolder + "\\MIP\\");
-            //        else
-            //        {
-            //            //   Directory.Delete(tempFolder + "\\MIP\\", true);
-            //            //   Directory.CreateDirectory(tempFolder + "\\MIP\\");
-            //        }
-            //    }
+            lock (CriticalSectionLock)
+            {
+                if (tempFolder != "")
+                {
+                    if (Directory.Exists(tempFolder + "\\MIP\\") == false)
+                        Directory.CreateDirectory(tempFolder + "\\MIP\\");
+                    else
+                    {
+                        //   Directory.Delete(tempFolder + "\\MIP\\", true);
+                        //   Directory.CreateDirectory(tempFolder + "\\MIP\\");
+                    }
+                }
 
-            //    int CubeX, CubeY, CubeZ;
-            //    //calculate the direction vectors needed to do the mip, these are defaults that assume that the rotation should be around the z axis and the fast scan axis is the one that matters
-            //    CubeX = DensityGrid.GetLength(0);
-            //    CubeY = DensityGrid.GetLength(1);
-            //    CubeZ = DensityGrid.GetLength(2);
-
+                int CubeX, CubeY, CubeZ;
+                //calculate the direction vectors needed to do the mip, these are defaults that assume that the rotation should be around the z axis and the fast scan axis is the one that matters
+                CubeX = DensityGrid.GetLength(0);
+                CubeY = DensityGrid.GetLength(1);
+                CubeZ = DensityGrid.GetLength(2);
 
 
-            //    int cc = 0;
-            //    List<Thread> Threads = new List<Thread>();
-            //    // int AngleStepSize = 5;
-            //    object FibLock = new object();
+
+                int cc = 0;
+                List<Thread> Threads = new List<Thread>();
+                // int AngleStepSize = 5;
+                object FibLock = new object();
 
 
-            //    Bitmap[] Images = new Bitmap[(int)(360d / AngleStepSize)];
+                Bitmap[] Images = new Bitmap[(int)(360d / AngleStepSize)];
 
-            //    for (int i = 0; i < Images.Length; i++)
-            //    {
-            //        Threads.Add(new Thread(delegate(object Vars)
-            //        {
-            //            double[,] Slice;
-            //            // FreeImageAPI.FreeImageBitmap fib = null;
-            //            int index = (int)(Vars);
-            //            Console.WriteLine(index + "  " + index);
-            //            double Radians = 2 * Math.PI - (double)index * AngleStepSize / 180d * Math.PI;
-            //            Slice = MakeMIPProjectionEffect.DoMIPProjection_OneSlice(DensityGrid, Radians);
+                for (int i = 0; i < Images.Length; i++)
+                {
+                    Threads.Add(new Thread(delegate(object Vars)
+                    {
+                        double[,] Slice;
+                        // FreeImageAPI.FreeImageBitmap fib = null;
+                        int index = (int)(Vars);
+                        Console.WriteLine(index + "  " + index);
+                        double Radians = 2 * Math.PI - (double)index * AngleStepSize / 180d * Math.PI;
+                        Slice = MakeMIPProjectionEffect.DoMIPProjection_OneSlice(DensityGrid, Radians);
 
-            //            Images[index] = Slice.MakeBitmap24FlipHorizonal();
-            //            /*                    lock (FibLock)
-            //                                {
-            //                                    fib = new FreeImageAPI.FreeImageBitmap(Slice.MakeBitmap());
-            //                                    fib.Save(tempFolder + "\\MIP\\MIP" + string.Format("{0:000}", index) + ".jpg");
-            //                                }*/
-            //        }
-            //        )
-            //        );
-            //    }
-
-
-            //    Thread CleanUp = new Thread(delegate()
-            //    {
-            //        int Index = 0;
-            //        VideoWriter VW = null;
-            //        int nWidth = 100;
-            //        while (Index < Images.Length)
-            //        {
-            //            while (Images[Index] == null)
-            //            {
-            //                Thread.Sleep(100);
-            //            }
-
-            //            if (Index == 0)
-            //            {
-            //                nWidth = (int)(16 * (Math.Floor((double)Images[Index].Width / 16d) + 1));
-            //                VW = new VideoWriter(MovieFilename, CvInvoke.cveVideoWriterFourcc('M', 'J', 'P', 'G'), 33, nWidth, Images[Index].Height, true);
-            //            }
-
-            //            Thread.Sleep(100);
-
-            //            Bitmap temp = new Bitmap(nWidth, Images[Index].Height, PixelFormat.Format32bppRgb);
-            //            Graphics g = Graphics.FromImage(temp);
-
-            //            g.DrawImage(Images[Index], Point.Empty);
-
-            //            var frame = new Emgu.CV.Image<Bgr, byte>(temp);
-
-            //            VW.WriteFrame<Bgr, byte>(frame);
-
-            //            Index++;
-            //        }
-
-            //        VW.Dispose();
-            //    });
-
-            //    for (int i = 0; i < Threads.Count; i++)
-            //    {
-            //        Threads[i].Start(i);
-            //    }
-
-            //    if (MovieFilename != "")
-            //        CleanUp.Start();
-
-            //    foreach (Thread t in Threads)
-            //        t.Join();
-
-            //    if (MovieFilename != "")
-            //        CleanUp.Join();
+                        Images[index] = Slice.MakeBitmap24FlipHorizonal();
+                        /*                    lock (FibLock)
+                                            {
+                                                fib = new FreeImageAPI.FreeImageBitmap(Slice.MakeBitmap());
+                                                fib.Save(tempFolder + "\\MIP\\MIP" + string.Format("{0:000}", index) + ".jpg");
+                                            }*/
+                    }
+                    )
+                    );
+                }
 
 
-            //    //double[,] SliceO;
-            //    //double RadiansO = 0;
-            //    //SliceO = MakeMIPProjectionEffect.DoMIPProjection_OneSlice(DensityGrid, RadiansO);
-            //    return Images;
-            //}
+                Thread CleanUp = new Thread(delegate()
+                {
+                    int Index = 0;
+                    VideoWriter VW = null;
+                    int nWidth = 100;
+                    while (Index < Images.Length)
+                    {
+                        while (Images[Index] == null)
+                        {
+                            Thread.Sleep(100);
+                        }
+
+                        if (Index == 0)
+                        {
+                            nWidth = (int)(16 * (Math.Floor((double)Images[Index].Width / 16d) + 1));
+                            VW = new VideoWriter(MovieFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 33, nWidth, Images[Index].Height, true);
+                        }
+
+                        Thread.Sleep(100);
+
+                        Bitmap temp = new Bitmap(nWidth, Images[Index].Height, PixelFormat.Format32bppRgb);
+                        Graphics g = Graphics.FromImage(temp);
+
+                        g.DrawImage(Images[Index], Point.Empty);
+
+                        var frame = new Emgu.CV.Image<Bgr, byte>(temp);
+
+                        VW.WriteFrame<Bgr, byte>(frame);
+
+                        Index++;
+                    }
+
+                    VW.Dispose();
+                });
+
+                for (int i = 0; i < Threads.Count; i++)
+                {
+                    Threads[i].Start(i);
+                }
+
+                if (MovieFilename != "")
+                    CleanUp.Start();
+
+                foreach (Thread t in Threads)
+                    t.Join();
+
+                if (MovieFilename != "")
+                    CleanUp.Join();
+
+
+                //double[,] SliceO;
+                //double RadiansO = 0;
+                //SliceO = MakeMIPProjectionEffect.DoMIPProjection_OneSlice(DensityGrid, RadiansO);
+                return Images;
+            }
         }
 
 
         public unsafe static Bitmap[] DoMIPProjection(string MovieFilename, string tempFolder, double[, ,] DensityGrid, double AngleStepSize)
         {
-            return null;
-            //lock (CriticalSectionLock)
-            //{
-            //    if (tempFolder != "")
-            //    {
-            //        if (Directory.Exists(tempFolder + "\\MIP\\") == false)
-            //            Directory.CreateDirectory(tempFolder + "\\MIP\\");
-            //        else
-            //        {
-            //            //   Directory.Delete(tempFolder + "\\MIP\\", true);
-            //            //   Directory.CreateDirectory(tempFolder + "\\MIP\\");
-            //        }
-            //    }
+            lock (CriticalSectionLock)
+            {
+                if (tempFolder != "")
+                {
+                    if (Directory.Exists(tempFolder + "\\MIP\\") == false)
+                        Directory.CreateDirectory(tempFolder + "\\MIP\\");
+                    else
+                    {
+                        //   Directory.Delete(tempFolder + "\\MIP\\", true);
+                        //   Directory.CreateDirectory(tempFolder + "\\MIP\\");
+                    }
+                }
 
-            //    int CubeX, CubeY, CubeZ;
-            //    //calculate the direction vectors needed to do the mip, these are defaults that assume that the rotation should be around the z axis and the fast scan axis is the one that matters
-            //    CubeX = DensityGrid.GetLength(0);
-            //    CubeY = DensityGrid.GetLength(1);
-            //    CubeZ = DensityGrid.GetLength(2);
-
+                int CubeX, CubeY, CubeZ;
+                //calculate the direction vectors needed to do the mip, these are defaults that assume that the rotation should be around the z axis and the fast scan axis is the one that matters
+                CubeX = DensityGrid.GetLength(0);
+                CubeY = DensityGrid.GetLength(1);
+                CubeZ = DensityGrid.GetLength(2);
 
 
-            //    int cc = 0;
-            //    List<Thread> Threads = new List<Thread>();
-            //   // int AngleStepSize = 5;
-            //    object FibLock = new object();
+
+                int cc = 0;
+                List<Thread> Threads = new List<Thread>();
+               // int AngleStepSize = 5;
+                object FibLock = new object();
 
 
-            //    Bitmap[] Images = new Bitmap[(int)(360d / AngleStepSize)];
+                Bitmap[] Images = new Bitmap[(int)(360d / AngleStepSize)];
 
-            //    for (int i = 0; i < Images.Length;i++ )
-            //    {
-            //        Threads.Add(new Thread(delegate(object Vars)
-            //    {
-            //        double[,] Slice;
-            //        // FreeImageAPI.FreeImageBitmap fib = null;
-            //        int index = (int)(Vars);
-            //        Console.WriteLine(index  + "  " + index);
-            //        double Radians = 2*Math.PI- (double)index *AngleStepSize/180d*Math.PI;
-            //        Slice = MakeMIPProjectionEffect.DoMIPProjection_OneSlice(DensityGrid, Radians);
+                for (int i = 0; i < Images.Length;i++ )
+                {
+                    Threads.Add(new Thread(delegate(object Vars)
+                {
+                    double[,] Slice;
+                    // FreeImageAPI.FreeImageBitmap fib = null;
+                    int index = (int)(Vars);
+                    Console.WriteLine(index  + "  " + index);
+                    double Radians = 2*Math.PI- (double)index *AngleStepSize/180d*Math.PI;
+                    Slice = MakeMIPProjectionEffect.DoMIPProjection_OneSlice(DensityGrid, Radians);
 
-            //        Images[index] = Slice.MakeBitmap24FlipHorizonal();
-            //        /*                    lock (FibLock)
-            //                            {
-            //                                fib = new FreeImageAPI.FreeImageBitmap(Slice.MakeBitmap());
-            //                                fib.Save(tempFolder + "\\MIP\\MIP" + string.Format("{0:000}", index) + ".jpg");
-            //                            }*/
-            //    }
-            //        )
-            //        );
-            //    }
-
-
-            //    Thread CleanUp = new Thread(delegate()
-            //        {
-            //            int Index = 0;
-            //            VideoWriter VW = null;
-            //            int nWidth=100;
-            //            while (Index < Images.Length)
-            //            {
-            //                while (Images[Index] == null)
-            //                {
-            //                    Thread.Sleep(100);
-            //                }
-
-            //                if (Index == 0)
-            //                {
-            //                    nWidth =  (int)(16 * (Math.Floor((double)Images[Index].Width / 16d) + 1));
-            //                    VW = new VideoWriter(MovieFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 33, nWidth, Images[Index].Height, true);
-            //                }
-
-            //                Thread.Sleep(100);
-
-            //                Bitmap temp = new Bitmap(nWidth, Images[Index].Height, PixelFormat.Format32bppRgb);
-            //                Graphics g = Graphics.FromImage(temp);
-
-            //                g.DrawImage(Images[Index], Point.Empty);
-
-            //                var frame = new Emgu.CV.Image<Bgr, byte>(temp);
-
-            //                VW.WriteFrame<Bgr, byte>(frame);
-
-            //                Index++;
-            //            }
-
-            //            VW.Dispose();
-            //        });
-
-            //    for (int  i = 0; i < Threads.Count;i++ )
-            //    {
-            //        Threads[i].Start(i);
-            //    }
-
-            //    if (MovieFilename !="")
-            //        CleanUp.Start();
-
-            //    foreach (Thread t in Threads)
-            //        t.Join();
-
-            //    if (MovieFilename != "")
-            //        CleanUp.Join();
+                    Images[index] = Slice.MakeBitmap24FlipHorizonal();
+                    /*                    lock (FibLock)
+                                        {
+                                            fib = new FreeImageAPI.FreeImageBitmap(Slice.MakeBitmap());
+                                            fib.Save(tempFolder + "\\MIP\\MIP" + string.Format("{0:000}", index) + ".jpg");
+                                        }*/
+                }
+                    )
+                    );
+                }
 
 
-            //    //double[,] SliceO;
-            //    //double RadiansO = 0;
-            //    //SliceO = MakeMIPProjectionEffect.DoMIPProjection_OneSlice(DensityGrid, RadiansO);
-            //    return Images;
-            //}
+                Thread CleanUp = new Thread(delegate()
+                    {
+                        int Index = 0;
+                        VideoWriter VW = null;
+                        int nWidth=100;
+                        while (Index < Images.Length)
+                        {
+                            while (Images[Index] == null)
+                            {
+                                Thread.Sleep(100);
+                            }
+
+                            if (Index == 0)
+                            {
+                                nWidth =  (int)(16 * (Math.Floor((double)Images[Index].Width / 16d) + 1));
+                                VW = new VideoWriter(MovieFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 33, nWidth, Images[Index].Height, true);
+                            }
+
+                            Thread.Sleep(100);
+
+                            Bitmap temp = new Bitmap(nWidth, Images[Index].Height, PixelFormat.Format32bppRgb);
+                            Graphics g = Graphics.FromImage(temp);
+
+                            g.DrawImage(Images[Index], Point.Empty);
+
+                            var frame = new Emgu.CV.Image<Bgr, byte>(temp);
+
+                            VW.WriteFrame<Bgr, byte>(frame);
+
+                            Index++;
+                        }
+
+                        VW.Dispose();
+                    });
+
+                for (int  i = 0; i < Threads.Count;i++ )
+                {
+                    Threads[i].Start(i);
+                }
+
+                if (MovieFilename !="")
+                    CleanUp.Start();
+
+                foreach (Thread t in Threads)
+                    t.Join();
+
+                if (MovieFilename != "")
+                    CleanUp.Join();
+
+
+                //double[,] SliceO;
+                //double RadiansO = 0;
+                //SliceO = MakeMIPProjectionEffect.DoMIPProjection_OneSlice(DensityGrid, RadiansO);
+                return Images;
+            }
         }
 
         public unsafe static Bitmap[] DoForwardProjection(string MovieFilename, string tempFolder, double[, ,] DensityGrid, double AngleStepSize)
         {
-            return null;
-            //lock (CriticalSectionLock)
-            //{
-            //    if (tempFolder != "")
-            //    {
-            //        if (Directory.Exists(tempFolder + "\\MIP\\") == false)
-            //            Directory.CreateDirectory(tempFolder + "\\MIP\\");
-            //        else
-            //        {
-            //            //   Directory.Delete(tempFolder + "\\MIP\\", true);
-            //            //   Directory.CreateDirectory(tempFolder + "\\MIP\\");
-            //        }
-            //    }
+            lock (CriticalSectionLock)
+            {
+                if (tempFolder != "")
+                {
+                    if (Directory.Exists(tempFolder + "\\MIP\\") == false)
+                        Directory.CreateDirectory(tempFolder + "\\MIP\\");
+                    else
+                    {
+                        //   Directory.Delete(tempFolder + "\\MIP\\", true);
+                        //   Directory.CreateDirectory(tempFolder + "\\MIP\\");
+                    }
+                }
 
-            //    int CubeX, CubeY, CubeZ;
-            //    //calculate the direction vectors needed to do the mip, these are defaults that assume that the rotation should be around the z axis and the fast scan axis is the one that matters
-            //    CubeX = DensityGrid.GetLength(0);
-            //    CubeY = DensityGrid.GetLength(1);
-            //    CubeZ = DensityGrid.GetLength(2);
-
+                int CubeX, CubeY, CubeZ;
+                //calculate the direction vectors needed to do the mip, these are defaults that assume that the rotation should be around the z axis and the fast scan axis is the one that matters
+                CubeX = DensityGrid.GetLength(0);
+                CubeY = DensityGrid.GetLength(1);
+                CubeZ = DensityGrid.GetLength(2);
 
 
-            //    int cc = 0;
-            //    List<Thread> Threads = new List<Thread>();
-            //    // int AngleStepSize = 5;
-            //    object FibLock = new object();
+
+                int cc = 0;
+                List<Thread> Threads = new List<Thread>();
+                // int AngleStepSize = 5;
+                object FibLock = new object();
 
 
-            //    Bitmap[] Images = new Bitmap[(int)(360d / AngleStepSize)];
+                Bitmap[] Images = new Bitmap[(int)(360d / AngleStepSize)];
 
-            //    for (int i = 0; i < Images.Length; i++)
-            //    {
-            //        Threads.Add(new Thread(delegate(object Vars)
-            //        {
-            //            double[,] Slice;
-            //            // FreeImageAPI.FreeImageBitmap fib = null;
-            //            int index = (int)(Vars);
-            //            Console.WriteLine(index + "  " + index);
-            //            double Radians = 2 * Math.PI - (double)index * AngleStepSize / 180d * Math.PI;
-            //            Slice = MakeMIPProjectionEffect.DoForwardProjection_OneSlice (DensityGrid, Radians);
+                for (int i = 0; i < Images.Length; i++)
+                {
+                    Threads.Add(new Thread(delegate(object Vars)
+                    {
+                        double[,] Slice;
+                        // FreeImageAPI.FreeImageBitmap fib = null;
+                        int index = (int)(Vars);
+                        Console.WriteLine(index + "  " + index);
+                        double Radians = 2 * Math.PI - (double)index * AngleStepSize / 180d * Math.PI;
+                        Slice = MakeMIPProjectionEffect.DoForwardProjection_OneSlice (DensityGrid, Radians);
 
-            //            Images[index] = Slice.MakeBitmap24FlipHorizonal();
-            //            /*                    lock (FibLock)
-            //                                {
-            //                                    fib = new FreeImageAPI.FreeImageBitmap(Slice.MakeBitmap());
-            //                                    fib.Save(tempFolder + "\\MIP\\MIP" + string.Format("{0:000}", index) + ".jpg");
-            //                                }*/
-            //        }
-            //        )
-            //        );
-            //    }
-
-
-            //    Thread CleanUp = new Thread(delegate()
-            //    {
-            //        int Index = 0;
-            //        VideoWriter VW = null;
-            //        int nWidth = 100;
-            //        while (Index < Images.Length)
-            //        {
-            //            while (Images[Index] == null)
-            //            {
-            //                Thread.Sleep(100);
-            //            }
-
-            //            if (Index == 0)
-            //            {
-            //                nWidth = (int)(16 * (Math.Floor((double)Images[Index].Width / 16d) + 1));
-            //                VW = new VideoWriter(MovieFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 33, nWidth, Images[Index].Height, true);
-            //            }
-
-            //            Thread.Sleep(100);
-
-            //            Bitmap temp = new Bitmap(nWidth, Images[Index].Height, PixelFormat.Format32bppRgb);
-            //            Graphics g = Graphics.FromImage(temp);
-
-            //            g.DrawImage(Images[Index], Point.Empty);
-
-            //            var frame = new Emgu.CV.Image<Bgr, byte>(temp);
-
-            //            VW.WriteFrame<Bgr, byte>(frame);
-
-            //            Index++;
-            //        }
-
-            //        VW.Dispose();
-            //    });
-
-            //    for (int i = 0; i < Threads.Count; i++)
-            //    {
-            //        Threads[i].Start(i);
-            //    }
-
-            //    if (MovieFilename != "")
-            //        CleanUp.Start();
-
-            //    foreach (Thread t in Threads)
-            //        t.Join();
-
-            //    if (MovieFilename != "")
-            //        CleanUp.Join();
+                        Images[index] = Slice.MakeBitmap24FlipHorizonal();
+                        /*                    lock (FibLock)
+                                            {
+                                                fib = new FreeImageAPI.FreeImageBitmap(Slice.MakeBitmap());
+                                                fib.Save(tempFolder + "\\MIP\\MIP" + string.Format("{0:000}", index) + ".jpg");
+                                            }*/
+                    }
+                    )
+                    );
+                }
 
 
-            //    //double[,] SliceO;
-            //    //double RadiansO = 0;
-            //    //SliceO = MakeMIPProjectionEffect.DoMIPProjection_OneSlice(DensityGrid, RadiansO);
-            //    return Images;
-            //}
+                Thread CleanUp = new Thread(delegate()
+                {
+                    int Index = 0;
+                    VideoWriter VW = null;
+                    int nWidth = 100;
+                    while (Index < Images.Length)
+                    {
+                        while (Images[Index] == null)
+                        {
+                            Thread.Sleep(100);
+                        }
+
+                        if (Index == 0)
+                        {
+                            nWidth = (int)(16 * (Math.Floor((double)Images[Index].Width / 16d) + 1));
+                            VW = new VideoWriter(MovieFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 33, nWidth, Images[Index].Height, true);
+                        }
+
+                        Thread.Sleep(100);
+
+                        Bitmap temp = new Bitmap(nWidth, Images[Index].Height, PixelFormat.Format32bppRgb);
+                        Graphics g = Graphics.FromImage(temp);
+
+                        g.DrawImage(Images[Index], Point.Empty);
+
+                        var frame = new Emgu.CV.Image<Bgr, byte>(temp);
+
+                        VW.WriteFrame<Bgr, byte>(frame);
+
+                        Index++;
+                    }
+
+                    VW.Dispose();
+                });
+
+                for (int i = 0; i < Threads.Count; i++)
+                {
+                    Threads[i].Start(i);
+                }
+
+                if (MovieFilename != "")
+                    CleanUp.Start();
+
+                foreach (Thread t in Threads)
+                    t.Join();
+
+                if (MovieFilename != "")
+                    CleanUp.Join();
+
+
+                //double[,] SliceO;
+                //double RadiansO = 0;
+                //SliceO = MakeMIPProjectionEffect.DoMIPProjection_OneSlice(DensityGrid, RadiansO);
+                return Images;
+            }
         }
 
 
@@ -784,88 +781,87 @@ __kernel void simpleFBP( __global  double * volume,
 
         public unsafe static Bitmap DoMIPProjection(string MovieFilename, string tempFolder, double[, ,] DensityGrid, double[, ,] Grid2)
         {
-            return null;
-            //lock (CriticalSectionLock)
-            //{
-            //    if (Directory.Exists(tempFolder + "\\MIP\\") == false)
-            //        Directory.CreateDirectory(tempFolder + "\\MIP\\");
-            //    else
-            //    {
-            //        //   Directory.Delete(tempFolder + "\\MIP\\", true);
-            //        //   Directory.CreateDirectory(tempFolder + "\\MIP\\");
-            //    }
+            lock (CriticalSectionLock)
+            {
+                if (Directory.Exists(tempFolder + "\\MIP\\") == false)
+                    Directory.CreateDirectory(tempFolder + "\\MIP\\");
+                else
+                {
+                    //   Directory.Delete(tempFolder + "\\MIP\\", true);
+                    //   Directory.CreateDirectory(tempFolder + "\\MIP\\");
+                }
 
-            //    int CubeX, CubeY, CubeZ;
-            //    //calculate the direction vectors needed to do the mip, these are defaults that assume that the rotation should be around the z axis and the fast scan axis is the one that matters
-            //    CubeX = DensityGrid.GetLength(0);
-            //    CubeY = DensityGrid.GetLength(1);
-            //    CubeZ = DensityGrid.GetLength(2);
+                int CubeX, CubeY, CubeZ;
+                //calculate the direction vectors needed to do the mip, these are defaults that assume that the rotation should be around the z axis and the fast scan axis is the one that matters
+                CubeX = DensityGrid.GetLength(0);
+                CubeY = DensityGrid.GetLength(1);
+                CubeZ = DensityGrid.GetLength(2);
 
-            //    int cc = 0;
-            //    List<Thread> Threads = new List<Thread>();
-            //    double AngleStepSize = 5;
-            //    object FibLock = new object();
+                int cc = 0;
+                List<Thread> Threads = new List<Thread>();
+                double AngleStepSize = 5;
+                object FibLock = new object();
 
-            //    int nAngles = (int)(360d / (double)AngleStepSize);
-            //    Bitmap[] Images = new Bitmap[nAngles * 3];
+                int nAngles = (int)(360d / (double)AngleStepSize);
+                Bitmap[] Images = new Bitmap[nAngles * 3];
 
-            //    WorkToken[] wtokens = new WorkToken[nAngles];
-            //    WorkToken[] wTokens2 = new WorkToken[nAngles];
-            //    MergeToken[] mergeTokens = new MergeToken[nAngles];
-            //    for (int i = 0; i < nAngles; i++)
-            //    {
-            //        wtokens[i] = new WorkToken(DensityGrid, Images, i, AngleStepSize, 0);
+                WorkToken[] wtokens = new WorkToken[nAngles];
+                WorkToken[] wTokens2 = new WorkToken[nAngles];
+                MergeToken[] mergeTokens = new MergeToken[nAngles];
+                for (int i = 0; i < nAngles; i++)
+                {
+                    wtokens[i] = new WorkToken(DensityGrid, Images, i, AngleStepSize, 0);
 
-            //        wTokens2[i] = new WorkToken(Grid2, Images, i, AngleStepSize, nAngles);
+                    wTokens2[i] = new WorkToken(Grid2, Images, i, AngleStepSize, nAngles);
 
-            //        mergeTokens[i] = new MergeToken(Images, i, nAngles);
-            //    }
-
-
-            //    Thread CleanUp = new Thread(delegate()
-            //    {
-            //        int Index = 0;
-            //        VideoWriter VW = null;
-
-            //        while (Index < Images.Length)
-            //        {
-            //            while (Images[Index] == null)
-            //            {
-            //                Thread.Sleep(100);
-            //            }
-
-            //            if (Index == 0)
-            //                VW = new VideoWriter(MovieFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 33, Images[Index].Height, Images[Index].Width, true);
-
-            //            Thread.Sleep(100);
-
-            //            var frame = new Emgu.CV.Image<Bgra, byte>(Images[Index]);
-
-            //            VW.WriteFrame<Bgra, byte>(frame);
+                    mergeTokens[i] = new MergeToken(Images, i, nAngles);
+                }
 
 
-            //            Index++;
-            //        }
+                Thread CleanUp = new Thread(delegate()
+                {
+                    int Index = 0;
+                    VideoWriter VW = null;
 
-            //        VW.Dispose();
-            //    });
+                    while (Index < Images.Length)
+                    {
+                        while (Images[Index] == null)
+                        {
+                            Thread.Sleep(100);
+                        }
+
+                        if (Index == 0)
+                            VW = new VideoWriter(MovieFilename, CvInvoke.CV_FOURCC('M', 'J', 'P', 'G'), 33, Images[Index].Height, Images[Index].Width, true);
+
+                        Thread.Sleep(100);
+
+                        var frame = new Emgu.CV.Image<Bgra, byte>(Images[Index]);
+
+                        VW.WriteFrame<Bgra, byte>(frame);
 
 
-            //    CleanUp.Start();
-            //    Parallel.ForEach<WorkToken>(wTokens2, token => GetMip(token));
+                        Index++;
+                    }
 
-            //    Parallel.ForEach<WorkToken>(wtokens, token => GetMip(token));
-
-            //    Parallel.ForEach<MergeToken>(mergeTokens, token => JoinImages(token));
-
-            //    CleanUp.Join();
+                    VW.Dispose();
+                });
 
 
-            //    double[,] SliceO;
-            //    double RadiansO = 0;
-            //    SliceO = MakeMIPProjectionEffect.DoMIPProjection_OneSlice(DensityGrid, RadiansO);
-            //    return SliceO.MakeBitmap();
-            //}
+                CleanUp.Start();
+                Parallel.ForEach<WorkToken>(wTokens2, token => GetMip(token));
+
+                Parallel.ForEach<WorkToken>(wtokens, token => GetMip(token));
+
+                Parallel.ForEach<MergeToken>(mergeTokens, token => JoinImages(token));
+
+                CleanUp.Join();
+
+
+                double[,] SliceO;
+                double RadiansO = 0;
+                SliceO = MakeMIPProjectionEffect.DoMIPProjection_OneSlice(DensityGrid, RadiansO);
+                return SliceO.MakeBitmap();
+            }
         }
 
         public unsafe Bitmap DoMIPProjection(string MovieFilename, string tempFolder, PhysicalArray DensityGrid)

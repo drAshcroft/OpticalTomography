@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
- 
+using fftwlib;
 using System.Reflection;
 using System.IO;
 using System.Windows.Forms;
@@ -27,7 +27,7 @@ namespace MathHelpLib
             catch //(Exception ex)
             {
                 //otherwise use the slower and less functional math.net library
-              //  CurrentFFTLib = new FFTMathNetLib();
+                CurrentFFTLib = new FFTMathNetLib();
             }
 
         }
